@@ -3,10 +3,10 @@ var count = 1;
       $('.mobile div').toggleClass('active');
   
       if (count % 2 == 0) {
-          $('.mobile div span').removeClass("backgr-black").addClass("backgr-white");
+          $('.mobile div span').removeClass("backgr-white").addClass("backgr-black");
           count++;
       } else {
-          $('.mobile div span').removeClass("backgr-white").addClass("backgr-black");
+          $('.mobile div span').removeClass("backgr-black").addClass("backgr-white");
           count++;
       } // $('.mobile div span').addClass('backgr-white');
   
