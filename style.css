@@ -19,7 +19,7 @@ html {
 }
 
 .about, .porfolio{
-    background: linear-gradient( rgba(168, 168, 168, 0.606), rgba(0, 0, 0, 0.8) ), url('../assets/img/bg-black.jpg');
+    background: linear-gradient( rgba(168, 168, 168, 0.606), rgba(0, 0, 0, 0.8) ), url('assets/img/bg-black.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
