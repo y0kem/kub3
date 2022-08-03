@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer components {
+        .menu-items a{
+            @apply p-3 block font-bold ease-in duration-300 opacity-50 cursor-pointer hover:opacity-100;
+            }
+        .about-title, .skill-title, .porfolio-title, .footer-title {
+            @apply text-center text-3xl font-bold
+        }
+        .porfolio-text{
+            @apply text-white underline underline-offset-4 text-center text-xl mt-5
+        }
+        .skill-box{
+            @apply grid gap-10 grid-cols-2 grid-rows-2 xl:grid-cols-4 xl:grid-rows-1 items-center
+        }
+        .skill-box:last-child{
+            @apply grid gap-10 grid-cols-1 md:grid-cols-2 md:grid-rows-2 xl:grid-cols-4 xl:grid-rows-1 items-center
+        }
+        }
+      </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <title>Сайт-потфолио Дениса Ложкина</title>
+</head>
+<body>
+    <header class="fixed min-w-full bg-white shadow-lg z-10">
+        <div class="container px-4 mx-auto">
+            <nav class="hidden md:block">
+                <ul class="flex justify-between my-2">
+                    <li class="menu-items"><a href="#fscreen">Главная</a></li>
+                    <li class="menu-items"><a href="#about">Обо мне</a></li>
+                    <li class="menu-items"><a href="#skill">Умения</a></li>
+                    <li class="menu-items"><a href="#porfolio">Портфолио</a></li>
+                    <li class="menu-items"><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile md:hidden">
+                <div class="btn-menu-hide view-menu">
+                    <span class=""></span>
+                    <span class=""></span>
+                    <span class=""></span>
+                </div>
+                <nav>
+                    <ul>
+                        <li class="px-2 my-5 text-2xl"><a class="active font-bold text-white" href="#fscreen">Главная</a></li>
+                        <li class="px-2 my-5 text-2xl"><a class="font-bold text-white" href="#about">Обо мне</a></li>
+                        <li class="px-2 my-5 text-2xl"><a class="font-bold text-white" href="#skill">Умения</a></li>
+                        <li class="px-2 my-5 text-2xl"><a class="font-bold text-white" href="#porfolio">Портфолио</a></li>
+                        <li class="px-2 my-5 text-2xl"><a class="font-bold text-white" href="#contact">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="fscreen" class="fscreen h-screen">
+            <div class="container px-4 mx-auto relative">
+                <div class="flex flex-col md:flex-row justify-around md:items-center h-screen">
+                    <div class="">
+                        <div class="fscreen-title">
+                            <h1 class="font-bold text-5xl leading-normal">Денис <br class="block md:hidden"> Ложкин</h1>
+                        </div>
+                        <div class="fscreen-text">
+                            HTML-Верстальщик<br> 22 года, Санкт-Петербург
+                        </div>
+                        <div class="fcreen-btn mt-10">
+                            <button class="py-5 px-10 text-white text-xl flex items-center font-bold rounded-full bg-black tracking-wide animate-pulse">Резюме
+                                <div class="fcreen-btn__img ml-5">
+                                    <img src="assets/img/download.svg" alt="">
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="fscreen-img max-w-xs 2xl:max-w-md xl:max-w-xs">
+                        <img class="" src="assets/img/2.jpg" alt="">
+                    </div>
+                </div>
+                <a class="fscreen-arrow" href="#about">
+                    <svg class="w-10 h-10 animate-bounce absolute bottom-12 text-black" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <section id="about" class="about bg-fixed">
+            <div class="container px-4 mx-auto">
+                <div class="about-box py-16 text-white">
+                    <div class="about-title mb-10">
+                        <h2>Обо мне</h2>
+                    </div>
+                    <div class="about-text text-lg text-center max-w-2xl mx-auto">
+                        <p class="pb-5">Привет, я Денис — HTML-Верстальщик.<br> Имею год опыта работы в коммерческой разработке.<br>На данный момент изучаю новые технологии связаные с WEB-разработкой.</p>
+                        <p class="pb-5">Закончил Государственный институт аэрокосмического прибора строения по специальности "Математическое обеспечение и администрирование информационных систем"</p>
+                        <p class="pb-5">Готов реализовать проекты любой сложности!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skill" class="skill">
+            <div class="container px-4 mx-auto py-16">
+                <div class="skill-title mb-10">
+                    <h2>Умения</h2>
+                </div>
+                <div class="skill-subtitle text-center text-xl mb-10">
+                    Мой стек технологий
+                </div>
+                <div class="skill-box grid gap-10 sm:grid-cols-1 sm:grid-cols-2 md:grid-rows-2 xl:grid-cols-4 xl:grid-rows-1 items-center mb-16">
+                    <div class="skill-box__items flex flex-col items-center">
+                        <img class="skill-box__lang" src="assets/img/html.png" alt="">
+                        <div class="skill-box-text text-xl font-bold text-slate-600 my-5">
+                            HTML
+                        </div>
+                        <div class="skill-box__stars">
+                            <img src="assets/img/stars.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="skill-box__items flex flex-col items-center">
+                        <img class="skill-box__lang" src="assets/img/css.png" alt="">
+                        <div class="skill-box-text text-xl font-bold text-slate-600 my-5">
+                            CSS
+                        </div>
+                        <div class="skill-box__stars">
+                            <img src="assets/img/stars.svg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="skill-box__items flex flex-col items-center">
+                        <img class="skill-box__lang" src="assets/img/js.png" alt="">
+                        <div class="skill-box-text text-xl font-bold text-slate-600 my-5">
+                            JS
+                        </div>
+                        <div class="skill-box__stars">
+                            <img src="assets/img/stars_3.svg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="skill-box__items flex flex-col items-center">
+                        <img class="skill-box__lang" src="assets/img/tailwind-css.svg" alt="">
+                        <div class="skill-box-text text-xl font-bold text-slate-600 my-5">
+                            TailWindCSS
+                        </div>
+                        <div class="skill-box__stars">
+                            <img src="assets/img/stars_5.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-subtitle text-center text-xl mt-10 mb-5">
+                    Имею опыт работы с
+                </div>
+                <div class="skill-box">
+                    <div class="skill-box__items flex flex-col items-center">
+                        <img class="skill-box__lang" src="assets/img/wp.png" alt="">
+                        <div class="skill-box-text text-xl font-bold text-slate-600 my-5">
+                            WordPress
+                        </div>
+                        <div class="skill-box__stars">
+                            <img src="assets/img/stars.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="skill-box__items flex flex-col items-center">
+                        <img class="skill-box__lang" src="assets/img/webpack.png" alt="">
+                        <div class="skill-box-text text-xl font-bold text-slate-600 my-5">
+                            Webpack
+                        </div>
+                        <div class="skill-box__stars">
+                            <img src="assets/img/stars_3.svg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="skill-box__items flex flex-col items-center">
+                        <img class="skill-box__lang" src="assets/img/bootstrap.svg" alt="">
+                        <div class="skill-box-text text-xl font-bold text-slate-600 my-5">
+                            Bootstrap 5
+                        </div>
+                        <div class="skill-box__stars">
+                            <img src="assets/img/stars_3.svg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="skill-box__items flex flex-col items-center">
+                        <img class="skill-box__lang" src="assets/img/figma.png" alt="">
+                        <div class="skill-box-text text-xl font-bold text-slate-600 my-5">
+                            Figma
+                        </div>
+                        <div class="skill-box__stars">
+                            <img src="assets/img/stars.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-subtitle text-center text-xl mt-10 mb-5">
+                    Также я
+                </div>
+
+                <div class="skill-box grid gap-10 sm:grid-cols-1 sm:grid-cols-2 md:grid-rows-2 xl:grid-cols-4 xl:grid-rows-1 items-center">
+                    <div class="skill-box__items flex flex-col items-center">
+                        <img class="skill-box__lang" src="assets/img/156211118016344783204478.svg" alt="">
+                        <div class="skill-box-text text-lg md:text-xl font-bold text-slate-600 my-5">
+                            Коммуникабельный
+                        </div>
+                    </div>
+                    <div class="skill-box__items flex flex-col items-center">
+                        <img class="skill-box__lang" src="assets/img/5114832261595156050.svg" alt="">
+                        <div class="skill-box-text text-lg md:text-xl font-bold text-slate-600 my-5">
+                            Дисциплинированный
+                        </div>
+                    </div>
+
+                    <div class="skill-box__items flex flex-col items-center">
+                        <img class="skill-box__lang" src="assets/img/68620945516345278634481.svg" alt="">
+                        <div class="skill-box-text text-lg md:text-xl font-bold text-slate-600 my-5">
+                            Креативный
+                        </div>
+                    </div>
+
+                    <div class="skill-box__items flex flex-col items-center">
+                        <img class="skill-box__lang" src="assets/img/9729029271642324647.svg" alt="">
+                        <div class="skill-box-text text-lg md:text-xl font-bold text-slate-600 my-5">
+                            Стрессоустойчивый
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="porfolio" class="porfolio bg-fixed">
+            <div class="container px-4 mx-auto py-16">
+                <div class="porfolio-title text-white mb-10">
+                    <h2>Портфолио</h2>
+                </div>
+                <div class="porfolio-box flex flex-col items-center">
+                    <div class="porfolio-item mb-8">
+                        <div class="porfolio-item__img max-w-4xl">
+                            <img src="assets/img/selfset.png" alt="">
+                        </div>
+                        <div class="porfolio-text">
+                            <a href="#">SelfSet - Медицинская компания</a>
+                        </div>
+                    </div>
+
+                    <div class="porfolio-item mb-8">
+                        <div class="porfolio-item__img max-w-4xl">
+                            <img src="assets/img/kub-3.png" alt="">
+                        </div>
+                        <div class="porfolio-text">
+                            <a href="#"></a>
+                        </div>
+                    </div>
+
+                    <div class="porfolio-item mb-8">
+                        <div class="porfolio-item__img max-w-4xl">
+                            <img src="assets/img/primero.png" alt="">
+                        </div>
+                        <div class="porfolio-text">
+                            <a href="#">Primero - лендинг для поставщика корма для рыб</a> 
+                        </div>
+                    </div>
+
+                    <div class="porfolio-item mb-8">
+                        <div class="porfolio-item__img max-w-4xl">
+                            <img src="assets/img/estrada.png" alt="">
+                        </div>
+                        <div class="porfolio-text">
+                            <a href="#">Estrada.life - Лендинг для международного союза деятелей
+                                эстрадного искусства</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contact" class="mb-16">
+        <div class="container px-4 mx-auto">
+            <div class="footer-title mt-10">Контакты</div>
+            <div class="footer-text text-center text-2xl mt-8">
+                <p>Хотите связаться со мной?</p>
+                <p>Пишите в мои соц-сети!</p>
+            </div>
+            <div class="footer-link flex items-center justify-center mt-8">
+                <div class="footer-link__item px-10 duration-300 hover:scale-125">
+                    <a href="#">
+                        <img src="assets/img/TG.svg" alt="">
+                    </a>
+                </div>
+                <div class="footer-link__item px-10 duration-300 hover:scale-125">
+                    <a href="#">
+                        <img src="assets/img/VK.svg" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="./assets/js/script.js"></script>
+</html>

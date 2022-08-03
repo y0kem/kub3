@@ -1,0 +1,154 @@
+html {
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: "Oswald-Regular";
+    font-style: normal;
+    font-weight: 400;
+    src: url("assets/font/Oswald-Regular.woff2") format("woff2");
+}
+
+* {
+    font-family: 'Oswald-Regular', sans-serif;
+}
+
+.skill-box__lang{
+    max-width: 200px;
+    height: 200px;
+}
+
+.about, .porfolio{
+    background: linear-gradient( rgba(168, 168, 168, 0.606), rgba(0, 0, 0, 0.8) ), url('assets/img/bg-black.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.footer-link__item img{
+    width: 150px;
+    height: 150px;
+}
+
+#skill:before {
+	display: block;
+	content: "";
+	height: 55px;
+	margin: -55px 0 0;
+}
+
+#about, #porfolio {
+	padding-top: 55px;
+	margin-top: -55px;
+	-webkit-background-clip: content-box;
+	background-clip: content-box;
+}
+
+.mobile div {
+    display: block;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    height: 50px;
+    width: 50px;
+    z-index: 9999999;
+    cursor: pointer;
+    box-sizing: content-box;
+}
+
+.mobile div span {
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 4px;
+    background-color: black;
+    border-radius: 13px;
+    transition-duration: 0.4s;
+}
+
+.mobile div span:nth-child(1) {
+    top: 14px;
+}
+
+.mobile div span:nth-child(2) {
+    top: 23px;
+}
+
+.mobile div span:nth-child(3) {
+    bottom: 14px;
+}
+
+.mobile div.active span:nth-child(1) {
+    transform: translate(-15px, 9px) rotate(-45deg);
+}
+
+.mobile div.active span:nth-child(2) {
+    transition-duration: 0s;
+    opacity: 0;
+}
+
+.mobile div.active span:nth-child(3) {
+    transform: translate(-15px, -9px) rotate(45deg);
+}
+
+.mobile nav {
+    display: block;
+    position: fixed;
+    bottom: 16px;
+    right: -62px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    z-index: 9999990;
+    transition-duration: 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.mobile nav.open {
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100vw;
+    height: 100vh;
+    right: 0px;
+    bottom: 0px;
+    border-radius: 0;
+}
+
+.mobile nav ul {
+    display: block;
+}
+
+.mobile nav ul.show {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.fscreen-arrow svg{
+    left:calc(50% - 20px);
+}
+
+
+@media screen and (max-width: 720px) {
+    .skill-box__lang, .skill-box__stars {
+        max-width: 100px;
+        height: 100px;
+    }
+    
+    #skill:before {
+        display: block;
+        content: "";
+        height: none;
+        margin: none;
+    }
+    
+    #about, #porfolio {
+        padding-top: none;
+        margin-top: none;
+    }
+  }
