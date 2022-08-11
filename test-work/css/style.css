@@ -3,14 +3,14 @@
    ========================================================================== */
 @font-face {
     font-family: "Rubik-Bold";
-    src: url("../fonts/fonts/Rubik-Bold.woff2") format("woff2"), url("../fonts/Rubik-Bold.woff") format("woff");
+    src: url("../../../fonts/Rubik-Bold.woff2") format("woff2"), url("../../../fonts/Rubik-Bold.woff") format("woff");
     font-weight: bold;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: "Rubik";
-    src: url("../fonts/Rubik-Regular.woff2") format("woff2"), url("../fonts/Rubik-Regular.woff") format("woff");
+    src: url("../../../fonts/Rubik-Regular.woff2") format("woff2"), url("../../../fonts/Rubik-Regular.woff") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -110,6 +110,7 @@ button {
     position: relative;
     width: 100%;
     margin: 0 auto;
+    padding: 0 15px;
 }
 
 @media (min-width: 576px) {
@@ -273,7 +274,6 @@ input[type=radio].visually-hidden {
 
 .header {
     background-color: #000;
-    height: 80px;
     z-index: 5;
 }
 
@@ -315,10 +315,6 @@ input[type=radio].visually-hidden {
     background-size: cover;
     height: calc(100vh - 80px);
     font-family: "Rubik", sans-serif;
-}
-
-.first-src__box {
-    position: relative;
 }
 
 .first-src__title, .ps-title {
@@ -474,28 +470,34 @@ input[type=radio].visually-hidden {
     margin-bottom: 7rem;
 }
 
-/* ----------- Non-Retina Screens ----------- */
-@media screen and (min-device-width: 1000px)
-and (max-device-width: 1600px)
-and (-webkit-min-device-pixel-ratio: 2)
-and (min-resolution: 192dpi) {
+@media (min-height: 720px) and (max-height: 800px) {
+    .first-src__img {
+        max-width: 40% !important;
+    }
+}
+@media (min-height: 800px) and (max-height: 900px) {
+    .first-src__img {
+        max-width: 50% !important;
+    }
+}
+@media (min-width: 991px) and (max-width: 1280px) {
     .header {
         height: 80px;
     }
 
     .header-line a {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         line-height: 0.5rem;
     }
     .header-line img {
-        max-width: 70%;
+        max-width: 60%;
     }
 
     .first-src__title h1 {
         font-size: 6rem;
         line-height: 5rem;
         margin-bottom: 1rem;
-        margin-top: 5rem;
+        margin-top: 8rem;
     }
 
     .first-src__subtitle {
@@ -519,7 +521,7 @@ and (min-resolution: 192dpi) {
     }
 
     .first-src__img {
-        max-width: 35%;
+        max-width: 40%;
     }
 
     .promo-title {
@@ -567,5 +569,42 @@ and (min-resolution: 192dpi) {
         border-radius: 7px;
         margin-top: 2rem;
         margin-bottom: 3.5rem;
+    }
+}
+@media (min-width: 1280px) and (max-width: 1440px) {
+    .first-src__img {
+        max-width: 50%;
+    }
+}
+@media (min-width: 1366px) and (max-width: 1440px) and (max-height: 900px) {
+    .first-src__img {
+        max-width: 50%;
+    }
+
+    .first-src__title h1 {
+        font-size: 6rem;
+        line-height: 5rem;
+        margin-bottom: 1rem;
+        margin-top: 8rem;
+    }
+
+    .first-src__subtitle {
+        font-size: 1.2rem;
+        line-height: 1.15rem;
+    }
+
+    .first-src__ps {
+        margin-top: 3rem;
+    }
+
+    .ps-title {
+        font-size: 1.5rem;
+        line-height: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .ps-text {
+        font-size: 1.125rem;
+        line-height: 1rem;
     }
 }
