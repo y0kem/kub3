@@ -4,7 +4,7 @@
 
 function renderRatings(){
     let retingValue = document.getElementById('amount').value;
-    const ratingActive = document.getElementById('test');
+    const ratingActive = document.getElementById('rating__active');
 
     console.log(ratingActive);
     const ratingActiveWidth = retingValue / 0.05;
@@ -14,6 +14,6 @@ function renderRatings(){
 
 
 document.getElementById('type').addEventListener('change', function() {
-    document.getElementById('test2').setAttribute('dir', this.value)
+    document.getElementById('rating__body').setAttribute('dir', this.value)
   })
   
