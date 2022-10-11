@@ -115,7 +115,7 @@ function renderPaginator() {
 
 function prevTemplate() {
   return `
-    <div class="prev-btn"><img src="./assets/icons/arrow-slider-prev.svg"></div>
+    <div class="prev-btn"><img style="pointer-events: none" src="./assets/icons/arrow-slider-prev.svg"></div>
   `;
 }
 
@@ -131,7 +131,7 @@ function numPagesTemplate() {
 
 function nextTemplate() {
   return `
-    <div class="next-btn"><img src="./assets/icons/arrow-slider-next.svg"></div>
+    <div class="next-btn"><img style="pointer-events: none" src="./assets/icons/arrow-slider-next.svg"></div>
   `;
 }
 

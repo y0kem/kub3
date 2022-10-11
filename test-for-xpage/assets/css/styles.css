@@ -593,6 +593,18 @@ h2 {
   cursor: pointer;
 }
 
+.pagination .num-btn img {
+  pointer-events: none;
+}
+
+.pagination .next-btn img {
+  pointer-events: none;
+}
+
+.pagination .prev-btn img {
+  pointer-events: none;
+}
+
 .news-slider {
   background: #fff;
 }
