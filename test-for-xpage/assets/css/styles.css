@@ -590,7 +590,6 @@ h2 {
 }
 
 .pagination .num-btn, .pagination .next-btn, .pagination .prev-btn {
-  padding: 10px;
   cursor: pointer;
 }
 
