@@ -2,6 +2,14 @@
 new AirDatepicker('#airdatepicker', {
 })
 
+let menuBtn = document.querySelector('.menu-btn');
+let menuMobile = document.getElementById('nav-menu__mob');
+
+menuBtn.onclick = function() {
+  menuBtn.classList.toggle('open');
+  menuMobile.style.display = (menuMobile.style.display == 'block') ? 'none' : 'block';
+};
+
 const items = [
     {
         id: 1,
