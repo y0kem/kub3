@@ -1,5 +1,6 @@
 
 new AirDatepicker('#airdatepicker', {
+
 })
 
 let menuBtn = document.querySelector('.menu-btn');

@@ -490,6 +490,7 @@ h2 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 50px;
+  margin-top: 55px;
 }
 
 .news-input .calendar {
@@ -503,6 +504,8 @@ h2 {
 .news-input input {
   height: 60px;
   background: #E5E5E5;
+  font-size: 16px;
+  color: #373334;
 }
 
 .custom-select {
@@ -870,6 +873,10 @@ h2 {
 @media (max-width: 768px) {
   .news-input {
     grid-template-columns: 1fr;
+    margin-top: 25px;
+  }
+  .news-input .calendar {
+    background-position-x: 3%;
   }
   .news {
     grid-template-columns: 1fr 1fr;
@@ -882,7 +889,7 @@ h2 {
   }
   .news-slide .news-slide__text {
     margin: 0;
-    max-width: 95%;
+    max-width: 85%;
   }
   .news-slide .news-slide__text .info-block {
     margin-top: 20px;
@@ -900,6 +907,12 @@ h2 {
 @media (max-width: 425px) {
   .news {
     grid-template-columns: 1fr;
+  }
+  .air-datepicker {
+    max-width: 280px;
+  }
+  .news-input .calendar {
+    background-position-x: 5%;
   }
 }
 .container {
