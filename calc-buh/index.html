@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
+    <title>Калькулятор бух. услуг</title>
+</head>
+
+<style>
+    @import url('https://fonts.cdnfonts.com/css/montserrat');
+
+    *{
+        font-family: 'Montserrat', sans-serif;
+    }
+    .calc-buh{
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .title-calc{
+        width: 100%;
+        height: 80px;
+        background-color: #5CA7FC;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 50px;
+    }
+
+    .title-calc h3{
+        color: #fff;
+        
+    }
+
+    .input_calc{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .checkbox_wrapper{
+        display: flex;
+        justify-content: space-between;
+
+        margin-bottom: 20px;
+    }
+
+    .slidecontainer {
+        width: 100%;
+    }
+
+    .slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 3px;
+        border-radius: 5px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+
+    .slider:hover {
+        opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #5CA7FC;
+        cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #5CA7FC;
+        cursor: pointer;
+    }
+    input{
+        min-width: 80px;
+        height: 36px;
+        font-size: 21px;
+        color: #000;
+        line-height: 100%;
+        border: 1px solid #cacbcf;
+        padding: 5px 12px;
+    }
+
+    .choose label{
+        display: flex;
+        align-items: center;
+    }
+
+    .radio-wrapper{
+        display: flex;
+        gap: 15px;
+    }
+
+    .wrapper_checkbox label{
+        display: flex;
+        align-items: center;
+    }
+</style>
+
+<body>
+    
+    <div class="calc-buh">
+        <div class="title-calc">
+            <h3>Калькулятор бухгалтерских услуг</h3>
+        </div>
+
+        <form action="">
+            <div class="box">
+                <div class="checkbox_wrapper">
+                    <label class="input_calc"><span>Наименование проекта</span><input type="text" class="input-project" /></label>
+                    <label class="input_calc"><span>Наименование юр. лица</span><input type="text" class="input-name" /></label>
+                    <label class="input_calc"><span>Сфера деятельности</span><input type="text" class="input-scope" /></label>
+                </div>
+                <!-- <span class="important_info">"Укажите наименование юридического лица полностью : ООО "__", ЗАО "__", АО "__", ИП, НКО, ПАО и т.д."</span> -->
+            </div>
+            <div class="box choose">
+                <p>Выберете систему налогоблажения</p>
+                
+                <div class="radio-wrapper">
+                    <label for="system-nalog__1">
+                        <input type="radio" id="system-nalog__1" name="system-nalog" value="ysn">
+                        <span>УСН</span>
+                    </label><br>
+                    <label for="system-nalog__2">
+                        <input type="radio" id="system-nalog__2" name="system-nalog" value="osno">
+                        <span>ОСНО (НДС)</span>
+                    </label><br> 
+                </div>
+            </div>
+        
+            <div class="box">
+                <p>Укажите количество бухгалерских операций</p>
+        
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="250" value="50" class="slider" id="myRange">
+                    <p>Операций: <span id="demo"></span></p>
+                </div>
+        
+        
+                
+            </div>
+    
+            <div class="box">
+                <div class="wrapper_checkbox">
+                    <label for="dop-item_1">
+                        <input type="checkbox" id="extra-item_1" name="system-nalog" value="ysn">
+                        <span>Расчет и начисление зарплаты</span>
+                    </label>
+        
+                    <label for="dop-item_1">
+                        <input type="checkbox" id="extra-item_1" name="system-nalog" value="ysn">
+                        <span>Кадровый учет сотрудников</span>
+                    </label>
+        
+                    <label for="dop-item_1">
+                        <input type="checkbox" id="extra-item_1" name="system-nalog" value="ysn">
+                        <span>Ведение воинского учета</span>
+                    </label>
+                </div>
+    
+    
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        var slider = document.getElementById("myRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value;
+        
+        slider.oninput = function() {
+            if (this.value <= 200) {
+                output.innerHTML = this.value;
+            }else{
+                output.innerHTML = "Индивидуально";
+            }
+          
+        }
+    </script>
+</body>
+</html>
