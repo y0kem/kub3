@@ -107,6 +107,66 @@
         display: flex;
         align-items: center;
     }
+
+    .input-extra__rf{
+        border: 2px black solid;
+
+        display: flex;
+        justify-content: space-between;
+
+        gap: 10px;
+
+        font-size: 22px;
+
+        width: 100px;
+        
+    }
+
+    .input-extra__rf:first-child{
+        cursor: pointer;
+    }
+
+    .input-extra__rf:last-child{
+        cursor: pointer;
+    }
+
+    .wrapper-input__extra-rf{
+        display: flex;
+        gap: 5px;
+    }
+
+    .wrapper-input__extra{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        row-gap: 25px;
+    }
+
+    #displayCounter, #displayCounter-eu, #displayCounter-mil{
+        display: flex;
+        align-items: center;
+    }
+
+    .wrapper-input__extra p:first-child, label, .military{
+        grid-column-start: 1;
+        grid-column-end: 3;
+        display: flex;
+        align-items: center;
+    }
+
+    .total{
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .total-btn button{
+        border: none;
+        background-color: #5CA7FC;
+        border-radius: 20px;
+        padding: 20px 50px;
+        font-size: 16px;
+        color: white;
+    }
 </style>
 
 <body>
@@ -116,12 +176,11 @@
             <h3>Калькулятор бухгалтерских услуг</h3>
         </div>
 
-        <form action="">
+        <!-- <form action=""> -->
             <div class="box">
                 <div class="checkbox_wrapper">
-                    <label class="input_calc"><span>Наименование проекта</span><input type="text" class="input-project" /></label>
-                    <label class="input_calc"><span>Наименование юр. лица</span><input type="text" class="input-name" /></label>
-                    <label class="input_calc"><span>Сфера деятельности</span><input type="text" class="input-scope" /></label>
+                    <label class="input_calc"><span>Наименование организации</span><input type="text" id="nameOrgan" class="input-project" /></label>
+                    <label class="input_calc"><span>Сфера деятельности</span><input type="text" class="input-name" /></label>
                 </div>
                 <!-- <span class="important_info">"Укажите наименование юридического лица полностью : ООО "__", ЗАО "__", АО "__", ИП, НКО, ПАО и т.д."</span> -->
             </div>
@@ -152,7 +211,7 @@
                 
             </div>
     
-            <div class="box">
+            <div class="box" style="display: flex;justify-content: space-between;">
                 <div class="wrapper_checkbox">
                     <label for="dop-item_1">
                         <input type="checkbox" id="extra-item_1" name="system-nalog" value="ysn">
@@ -163,19 +222,160 @@
                         <input type="checkbox" id="extra-item_1" name="system-nalog" value="ysn">
                         <span>Кадровый учет сотрудников</span>
                     </label>
-        
-                    <label for="dop-item_1">
-                        <input type="checkbox" id="extra-item_1" name="system-nalog" value="ysn">
-                        <span>Ведение воинского учета</span>
+                </div>
+
+                <div class="wrapper-input__extra">
+                    <p>Укажите количество человек в штате</p>
+
+                    <div class="wrapper-input__extra-rf">
+                        <p>РФ</p>
+                        <div class="input-extra__rf">
+                            <button id="increment">+</button>
+                            <div id="displayCounter"></div>
+                            <button id="decrement">-</button>
+                        </div>
+                    </div>
+                    <div class="wrapper-input__extra-rf">
+                        <p>Иностранцы</p>
+                        <div class="input-extra__rf">
+                            <button id="increment-eu">+</button>
+                            <div id="displayCounter-eu"></div>
+                            <button id="decrement-eu">-</button>
+                        </div>
+                    </div>
+                    <label for="input-extra__chbox">
+                        <input type="checkbox" id="input-extra__chbox" name="" value="ysn">
+                        <span>Нужна ли подача уведомлений <br>за иностранца?</span>
                     </label>
                 </div>
     
     
             </div>
-        </form>
+
+            <div class="box" style="display:flex; justify-content: space-between;">
+                <label for="dop-item_1">
+                    <input type="checkbox" id="extra-item_1" name="system-nalog" value="ysn">
+                    <span>Ведение воинского учета</span>
+                </label>
+
+                <div class="wrapper-input__extra-rf military">
+                    <p>Количество военнообязанных сотрудников</p>
+                    <div class="input-extra__rf">
+                        <button id="increment-mil">+</button>
+                        <div id="displayCounter-mil"></div>
+                        <button id="decrement-mil">-</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box total">
+                <div class="total-sum" id="totalSum">
+                    14 000 руб
+                </div>
+                <div class="total-btn" id="submit">
+                    <button>Получить предложение</button>
+                </div>
+            </div>
+        <!-- </form> -->
     </div>
     
     <script>
+        var productCounterEu={
+                count:0,									
+                incrementCounterEu:function(){
+            if(this.count<999){
+                return this.count = this.count + 1;
+            }else{
+                alert("maximum limit reached, you can buy only 10 items");
+                return this.count;
+            }
+            
+                },
+                decrementCounterEu:function(){
+                    if (this.count>0){
+                    return this.count = this.count - 1;
+                    } else {
+                    return this.count=0;
+                    }
+                },
+
+        };
+
+        var displayCoutEu = document.getElementById('displayCounter-eu');
+            displayCoutEu.innerHTML=0;
+        document.getElementById('increment-eu').onclick=function(){
+            displayCoutEu.innerHTML=productCounterEu.incrementCounterEu();
+        }
+        document.getElementById('decrement-eu').onclick=function(){
+            displayCoutEu.innerHTML = productCounterEu.decrementCounterEu();
+        }
+
+
+
+        var productCountermil={
+                count:0,									
+                incrementCountermil:function(){
+            if(this.count<999){
+                return this.count = this.count + 1;
+            }else{
+                alert("maximum limit reached, you can buy only 10 items");
+                return this.count;
+            }
+            
+                },
+                decrementCountermil:function(){
+                    if (this.count>0){
+                    return this.count = this.count - 1;
+                    } else {
+                    return this.count=0;
+                    }
+                },
+
+        };
+
+        var displayCoutmil = document.getElementById('displayCounter-mil');
+            displayCoutmil.innerHTML=0;
+        document.getElementById('increment-mil').onclick=function(){
+            displayCoutmil.innerHTML=productCountermil.incrementCountermil();
+        }
+        document.getElementById('decrement-mil').onclick=function(){
+            displayCoutmil.innerHTML = productCountermil.decrementCountermil();
+        }
+
+
+
+
+        var productCounter={
+                count:0,									
+                incrementCounter:function(){
+            if(this.count<999){
+                return this.count = this.count + 1;
+            }else{
+                alert("maximum limit reached, you can buy only 10 items");
+                return this.count;
+            }
+            
+                },
+                decrementCounter:function(){
+                    if (this.count>0){
+                    return this.count = this.count - 1;
+                    } else {
+                    return this.count=0;
+                    }
+                },
+
+        };
+
+        var displayCout = document.getElementById('displayCounter');
+            displayCout.innerHTML=0;
+        document.getElementById('increment').onclick=function(){
+            displayCout.innerHTML=productCounter.incrementCounter();
+        }
+        document.getElementById('decrement').onclick=function(){
+            displayCout.innerHTML = productCounter.decrementCounter();
+        }
+        var nameOrganization = document.getElementById('nameOrgan').value
+        
         var slider = document.getElementById("myRange");
         var output = document.getElementById("demo");
         output.innerHTML = slider.value;
@@ -186,8 +386,34 @@
             }else{
                 output.innerHTML = "Индивидуально";
             }
+            
+
+            console.log();
           
         }
+
+        
+        
+
+        document.querySelector("#submit").onclick = function(){
+            let testVar = Number(output.innerHTML);
+            let testVarName = document.getElementById('nameOrgan').value;
+
+            let textToSend = `Заявка от : ${testVarName} %0A Сумма : ${testVar}`;
+
+            let token = "5464449977:AAHjqrTJCBo-9LtPw73MxJWV08Mnq44ufyY"
+
+            let chat_id = -394292155
+
+            let url = `https://api.telegram.org/bot5464449977:AAHjqrTJCBo-9LtPw73MxJWV08Mnq44ufyY/sendMessage?chat_id=-1001819460715&text=${textToSend}`
+
+            let api = new XMLHttpRequest();
+            api.open("GET", url, true);
+            api.send();
+
+            console.log("Отправилось");
+        }
+
     </script>
 </body>
 </html>
