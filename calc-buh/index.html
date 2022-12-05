@@ -109,17 +109,13 @@
     }
 
     .input-extra__rf{
-        border: 2px black solid;
-
-        display: flex;
-        justify-content: space-between;
-
         gap: 10px;
 
         font-size: 22px;
-
-        width: 100px;
-        
+    }
+    
+    .input-extra__rf input{
+        width: 20px;
     }
 
     .input-extra__rf:first-child{
@@ -189,7 +185,7 @@
                 
                 <div class="radio-wrapper">
                     <label for="system-nalog__1">
-                        <input type="radio" id="system-nalog__1" name="system-nalog" value="ysn">
+                        <input type="radio" id="system-nalog__1" name="system-nalog" checked value="ysn">
                         <span>УСН</span>
                     </label><br>
                     <label for="system-nalog__2">
@@ -230,17 +226,13 @@
                     <div class="wrapper-input__extra-rf">
                         <p>РФ</p>
                         <div class="input-extra__rf">
-                            <button id="increment">+</button>
-                            <div id="displayCounter"></div>
-                            <button id="decrement">-</button>
+                            <input type="number" name="" id="">
                         </div>
                     </div>
                     <div class="wrapper-input__extra-rf">
                         <p>Иностранцы</p>
                         <div class="input-extra__rf">
-                            <button id="increment-eu">+</button>
-                            <div id="displayCounter-eu"></div>
-                            <button id="decrement-eu">-</button>
+                            <input type="number" name="" id="">
                         </div>
                     </div>
                     <label for="input-extra__chbox">
@@ -261,9 +253,7 @@
                 <div class="wrapper-input__extra-rf military">
                     <p>Количество военнообязанных сотрудников</p>
                     <div class="input-extra__rf">
-                        <button id="increment-mil">+</button>
-                        <div id="displayCounter-mil"></div>
-                        <button id="decrement-mil">-</button>
+                        <input type="number" name="" id="">
                     </div>
                 </div>
             </div>
@@ -280,100 +270,10 @@
     </div>
     
     <script>
-        var productCounterEu={
-                count:0,									
-                incrementCounterEu:function(){
-            if(this.count<999){
-                return this.count = this.count + 1;
-            }else{
-                alert("maximum limit reached, you can buy only 10 items");
-                return this.count;
-            }
-            
-                },
-                decrementCounterEu:function(){
-                    if (this.count>0){
-                    return this.count = this.count - 1;
-                    } else {
-                    return this.count=0;
-                    }
-                },
-
-        };
-
-        var displayCoutEu = document.getElementById('displayCounter-eu');
-            displayCoutEu.innerHTML=0;
-        document.getElementById('increment-eu').onclick=function(){
-            displayCoutEu.innerHTML=productCounterEu.incrementCounterEu();
-        }
-        document.getElementById('decrement-eu').onclick=function(){
-            displayCoutEu.innerHTML = productCounterEu.decrementCounterEu();
-        }
 
 
+        
 
-        var productCountermil={
-                count:0,									
-                incrementCountermil:function(){
-            if(this.count<999){
-                return this.count = this.count + 1;
-            }else{
-                alert("maximum limit reached, you can buy only 10 items");
-                return this.count;
-            }
-            
-                },
-                decrementCountermil:function(){
-                    if (this.count>0){
-                    return this.count = this.count - 1;
-                    } else {
-                    return this.count=0;
-                    }
-                },
-
-        };
-
-        var displayCoutmil = document.getElementById('displayCounter-mil');
-            displayCoutmil.innerHTML=0;
-        document.getElementById('increment-mil').onclick=function(){
-            displayCoutmil.innerHTML=productCountermil.incrementCountermil();
-        }
-        document.getElementById('decrement-mil').onclick=function(){
-            displayCoutmil.innerHTML = productCountermil.decrementCountermil();
-        }
-
-
-
-
-        var productCounter={
-                count:0,									
-                incrementCounter:function(){
-            if(this.count<999){
-                return this.count = this.count + 1;
-            }else{
-                alert("maximum limit reached, you can buy only 10 items");
-                return this.count;
-            }
-            
-                },
-                decrementCounter:function(){
-                    if (this.count>0){
-                    return this.count = this.count - 1;
-                    } else {
-                    return this.count=0;
-                    }
-                },
-
-        };
-
-        var displayCout = document.getElementById('displayCounter');
-            displayCout.innerHTML=0;
-        document.getElementById('increment').onclick=function(){
-            displayCout.innerHTML=productCounter.incrementCounter();
-        }
-        document.getElementById('decrement').onclick=function(){
-            displayCout.innerHTML = productCounter.decrementCounter();
-        }
         var nameOrganization = document.getElementById('nameOrgan').value
         
         var slider = document.getElementById("myRange");
@@ -386,32 +286,77 @@
             }else{
                 output.innerHTML = "Индивидуально";
             }
-            
-
             console.log();
-          
+        }
+        function getData() {
+            
         }
 
-        
-        
+        function calcOperation() {
+            let countOperation = document.getElementById("myRange").value;
+            alert(countOperation);
+            let sumOperation;
 
+            if (document.getElementById('system-nalog__1').checked) {
+                if (countOperation => 50) {
+                    sumOperation = 6000;
+                }else if ((countOperation > 50)||(countOperation <= 100)) {
+                    sumOperation = 11000;
+                }else if ((countOperation > 100)||(countOperation <= 200)) {
+                    sumOperation = 19000;
+                }else{
+                    sumOperation = "Индивидуально";
+                }
+            }else{
+                if (countOperation => 50) {
+                    sumOperation = 9000;
+                }else if ((countOperation > 50)||(countOperation <= 100)) {
+                    sumOperation = 14000;
+                }else if ((countOperation > 100)||(countOperation <= 200)) {
+                    sumOperation = 25000;
+                }else{
+                    sumOperation = "Индивидуально";
+                }
+            }
+            return (sumOperation);
+        }
+
+        function checkNameOrg() {
+            let inputOrgan = document.getElementById('nameOrgan').value;
+            
+            if (Boolean(inputOrgan)) {
+                return(true);
+            } else {
+                return(false);
+            }
+        }
+
+       
         document.querySelector("#submit").onclick = function(){
-            let testVar = Number(output.innerHTML);
-            let testVarName = document.getElementById('nameOrgan').value;
 
-            let textToSend = `Заявка от : ${testVarName} %0A Сумма : ${testVar}`;
 
-            let token = "5464449977:AAHjqrTJCBo-9LtPw73MxJWV08Mnq44ufyY"
+            if (checkNameOrg() == true) {
 
-            let chat_id = -394292155
+                let testVar = calcOperation();
+                let testVarName = document.getElementById('nameOrgan').value;
 
-            let url = `https://api.telegram.org/bot5464449977:AAHjqrTJCBo-9LtPw73MxJWV08Mnq44ufyY/sendMessage?chat_id=-1001819460715&text=${textToSend}`
+                let textToSend = `Заявка от : ${testVarName} %0A Сумма : ${testVar}`;
 
-            let api = new XMLHttpRequest();
-            api.open("GET", url, true);
-            api.send();
+                let token = "5464449977:AAHjqrTJCBo-9LtPw73MxJWV08Mnq44ufyY"
 
-            console.log("Отправилось");
+                let chat_id = -394292155
+
+                let url = `https://api.telegram.org/bot5464449977:AAHjqrTJCBo-9LtPw73MxJWV08Mnq44ufyY/sendMessage?chat_id=-1001819460715&text=${textToSend}`
+
+                let api = new XMLHttpRequest();
+                api.open("GET", url, true);
+                api.send();
+
+                console.log("Отправилось");
+            } else {
+                alert('Error');
+            }
+            
         }
 
     </script>
