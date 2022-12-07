@@ -167,7 +167,7 @@
 
 <body>
     
-    <div class="calc-buh">
+    <div class="calc-buh" id="calc-buh">
         <div class="title-calc">
             <h3>Калькулятор бухгалтерских услуг</h3>
         </div>
@@ -202,20 +202,18 @@
                     <input type="range" min="1" max="250" value="50" class="slider" id="myRange">
                     <p>Операций: <span id="demo"></span></p>
                 </div>
-        
-        
                 
             </div>
     
             <div class="box" style="display: flex;justify-content: space-between;">
                 <div class="wrapper_checkbox">
                     <label for="dop-item_1">
-                        <input type="checkbox" id="extra-item_1" name="system-nalog" value="ysn">
+                        <input type="checkbox" id="extra-item_1" name="system-nalog" >
                         <span>Расчет и начисление зарплаты</span>
                     </label>
         
                     <label for="dop-item_1">
-                        <input type="checkbox" id="extra-item_1" name="system-nalog" value="ysn">
+                        <input type="checkbox" id="extra-item_2" name="system-nalog" >
                         <span>Кадровый учет сотрудников</span>
                     </label>
                 </div>
@@ -226,17 +224,17 @@
                     <div class="wrapper-input__extra-rf">
                         <p>РФ</p>
                         <div class="input-extra__rf">
-                            <input type="number" name="" id="">
+                            <input type="number" name="" id="countRf">
                         </div>
                     </div>
                     <div class="wrapper-input__extra-rf">
                         <p>Иностранцы</p>
                         <div class="input-extra__rf">
-                            <input type="number" name="" id="">
+                            <input type="number" name="" id="countForeigners">
                         </div>
                     </div>
                     <label for="input-extra__chbox">
-                        <input type="checkbox" id="input-extra__chbox" name="" value="ysn">
+                        <input type="checkbox" id="input-extra__chbox" name="">
                         <span>Нужна ли подача уведомлений <br>за иностранца?</span>
                     </label>
                 </div>
@@ -246,21 +244,21 @@
 
             <div class="box" style="display:flex; justify-content: space-between;">
                 <label for="dop-item_1">
-                    <input type="checkbox" id="extra-item_1" name="system-nalog" value="ysn">
+                    <input type="checkbox" id="extra-Military" name="system-nalog">
                     <span>Ведение воинского учета</span>
                 </label>
 
                 <div class="wrapper-input__extra-rf military">
                     <p>Количество военнообязанных сотрудников</p>
                     <div class="input-extra__rf">
-                        <input type="number" name="" id="">
+                        <input type="number" name="" id="countMilitary">
                     </div>
                 </div>
             </div>
 
             <div class="box total">
-                <div class="total-sum" id="totalSum">
-                    14 000 руб
+                <div class="total-sum">
+                    <span id="totalSum">0</span> руб
                 </div>
                 <div class="total-btn" id="submit">
                     <button>Получить предложение</button>
@@ -294,31 +292,83 @@
 
         function calcOperation() {
             let countOperation = document.getElementById("myRange").value;
-            alert(countOperation);
+            
             let sumOperation;
 
             if (document.getElementById('system-nalog__1').checked) {
-                if (countOperation => 50) {
+                if (countOperation <= 50) {
                     sumOperation = 6000;
-                }else if ((countOperation > 50)||(countOperation <= 100)) {
+                }else if ((countOperation > 50)&&(countOperation <= 100)) {
                     sumOperation = 11000;
-                }else if ((countOperation > 100)||(countOperation <= 200)) {
+                }else if ((countOperation > 100)&&(countOperation < 200)) {
                     sumOperation = 19000;
                 }else{
                     sumOperation = "Индивидуально";
                 }
             }else{
-                if (countOperation => 50) {
+                if (countOperation <= 50) {
                     sumOperation = 9000;
-                }else if ((countOperation > 50)||(countOperation <= 100)) {
+                }else if ((countOperation > 50)&&(countOperation <= 100)) {
                     sumOperation = 14000;
-                }else if ((countOperation > 100)||(countOperation <= 200)) {
+                }else if ((countOperation > 100)&&(countOperation < 200)) {
                     sumOperation = 25000;
                 }else{
                     sumOperation = "Индивидуально";
                 }
             }
             return (sumOperation);
+        }
+
+        function calcAdditionalService() {
+            let countRf = document.getElementById("countRf").value;
+            let countForeigners = document.getElementById("countForeigners").value;
+            let sumExtraFirst = 0;
+            let sumExtraSecond = 0;
+            let conutEmployee = Number(countRf) + Number(countForeigners);
+            if ((document.getElementById('extra-item_1').checked)&&(conutEmployee !=0)) {
+                if ((conutEmployee > 0)&&(conutEmployee <= 15)){
+                    sumExtraFirst = 6000;  
+                }else if ((conutEmployee > 15)&&(conutEmployee <= 50)) {
+                    sumExtraFirst = 14000;
+                }else if ((conutEmployee > 50)&&(conutEmployee <= 150)) {
+                    sumExtraFirst = 20000;
+                }else {
+                    sumExtraFirst = "Индивидуально";
+                }
+            }else{
+                sumExtraFirst = 0;
+            }
+            if(document.getElementById('input-extra__chbox').checked){
+                sumExtraSecond = sumExtraSecond + 2500 * countForeigners;
+            }else{
+                sumExtraSecond = 0;
+            }
+            if ((document.getElementById('extra-item_2').checked)) {
+                sumExtraSecond = sumExtraSecond + (countRf*700) + (countForeigners*1000);
+            }else {
+                sumExtraSecond = 0;
+            }
+            let sumExtra;
+            if (sumExtraFirst == "Индивидуально") {
+                sumExtra = "Индивидуально";
+            }else{
+                sumExtra = sumExtraFirst+sumExtraSecond;
+            }
+            
+            
+            return(sumExtra);
+        }
+
+        function calcMilitaryService() {
+            let countMilitary = document.getElementById("countMilitary").value;
+            let sumMilitary = 0;
+            if (document.getElementById('extra-Military').checked) {
+                sumMilitary = countMilitary * 700;
+            }else{
+                sumMilitary = 0;
+            }
+            
+            return(sumMilitary)
         }
 
         function checkNameOrg() {
@@ -331,13 +381,27 @@
             }
         }
 
+        function calcAll() {
+            let sumAll = calcMilitaryService() + calcAdditionalService() + calcOperation();
+            return(sumAll);
+        }
+
+        
+
+        function refresh() {
+            let total = calcAll();
+            document.getElementById("totalSum").innerHTML = total;
+
+        }
+
+        setInterval(refresh, 1);
        
         document.querySelector("#submit").onclick = function(){
-
+           
 
             if (checkNameOrg() == true) {
 
-                let testVar = calcOperation();
+                let testVar = calcAll();
                 let testVarName = document.getElementById('nameOrgan').value;
 
                 let textToSend = `Заявка от : ${testVarName} %0A Сумма : ${testVar}`;
