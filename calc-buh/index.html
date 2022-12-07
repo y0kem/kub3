@@ -258,7 +258,7 @@
 
             <div class="box total">
                 <div class="total-sum">
-                    <span id="totalSum">0</span> руб
+                    <span id="totalSum">0 руб</span> 
                 </div>
                 <div class="total-btn" id="submit">
                     <button>Получить предложение</button>
@@ -382,7 +382,13 @@
         }
 
         function calcAll() {
-            let sumAll = calcMilitaryService() + calcAdditionalService() + calcOperation();
+            let sumAll;
+
+            if((calcOperation() == "Индивидуально")||(calcAdditionalService() == "Индивидуально")){
+                sumAll = "Индивидуально"
+            }else{
+                sumAll = calcMilitaryService() + calcAdditionalService() + calcOperation();
+            }
             return(sumAll);
         }
 
@@ -390,7 +396,12 @@
 
         function refresh() {
             let total = calcAll();
-            document.getElementById("totalSum").innerHTML = total;
+            if (total == "Индивидуально") {
+                document.getElementById("totalSum").innerHTML = total;
+            } else {
+                document.getElementById("totalSum").innerHTML = `${total} руб`;
+            }
+            
 
         }
 
