@@ -162,7 +162,121 @@
         padding: 20px 50px;
         font-size: 16px;
         color: white;
+
+        display: flex;
+        margin-top: 30px;
+        margin: 30px auto 0;
+        cursor: pointer;
     }
+
+    /* Popup */
+
+    .popup-trigger {
+        border: none;
+        background-color: #5CA7FC;
+        border-radius: 20px;
+        padding: 20px 50px;
+        font-size: 16px;
+        color: white;
+        cursor: pointer;
+    }
+    .popup-trigger:hover {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+ .popup {
+	 position: fixed;
+	 inset: 0;
+	 z-index: 100;
+	 width: 100%;
+	 height: 100%;
+	 padding: 30px 15px;
+	 color: #000;
+	 visibility: hidden;
+	 transition: visibility 0.8s ease 0s;
+}
+ .popup::before {
+	 content: "";
+	 position: fixed;
+	 inset: 0;
+	 width: 100%;
+	 height: 100%;
+	 background-color: rgba(0, 0, 0, 0.9);
+	 opacity: 0;
+	 transition: opacity 0.8s ease 0s;
+}
+ .popup__content {
+	 display: flex;
+	 flex-direction: column;
+	 align-items: center;
+	 justify-content: center;
+	 flex: 1 1 auto;
+	 width: 100%;
+	 min-height: 100%;
+}
+ .popup__body {
+	 width: 100%;
+	 max-width: 800px;
+	 padding: 50px;
+	 background-color: #fff;
+	 border-radius: 5px;
+	 transform: scale(0);
+	 transition: all 0.3s ease 0s;
+}
+ .popup__close {
+	 position: absolute;
+	 top: 20px;
+	 right: 20px;
+	 z-index: 30;
+	 width: 20px;
+	 height: 20px;
+	 background-color: transparent;
+	 border: none;
+	 cursor: pointer;
+}
+ .popup__close::after, .popup__close::before {
+	 content: "";
+	 position: absolute;
+	 right: 0;
+	 width: 100%;
+	 height: 0.125rem;
+	 background-color: #000;
+	 transition: all 0.3s ease 0s;
+}
+ .popup__close::after {
+	 bottom: calc(50% - 0.0625rem);
+	 transform: rotate(45deg);
+}
+ .popup__close::before {
+	 top: calc(50% - 0.0625rem);
+	 transform: rotate(-45deg);
+}
+ .popup__text {
+	 font-size: 26px;
+	 font-weight: 600;
+	 text-align: center;
+     margin-bottom: 30px;
+}
+ .popup.show {
+	 visibility: visible;
+	 overflow: auto;
+}
+ .popup.show::before {
+	 opacity: 1;
+}
+ .popup.show .popup__body {
+	 transform: scale(1);
+	 transition: all 0.3s ease 0.2s;
+}
+.popup__box{
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup__tel label, .popup__name label{
+    display: flex;
+    flex-direction: column;
+}
+ 
 </style>
 
 <body>
@@ -199,7 +313,7 @@
                 <p>Укажите количество бухгалерских операций</p>
         
                 <div class="slidecontainer">
-                    <input type="range" min="1" max="250" value="50" class="slider" id="myRange">
+                    <input type="range" min="0" max="250" value="50" step="50" class="slider" id="myRange">
                     <p>Операций: <span id="demo"></span></p>
                 </div>
                 
@@ -260,16 +374,45 @@
                 <div class="total-sum">
                     <span id="totalSum">0 руб</span> 
                 </div>
-                <div class="total-btn" id="submit">
-                    <button>Получить предложение</button>
-                </div>
+                <button class="popup-trigger">Получить предложение</button>
             </div>
         <!-- </form> -->
+        
+
+        <div class="popup">
+            <div class="popup__content">
+                <div class="popup__body">
+                    <button class="popup__close" type="button" ></button>
+                    <div class="popup__text">Заполните данные для обратной связи</div>
+                        <div class="popup__box">
+                            <div class="popup__name">
+                                <label for="popup-name">
+                                    <p>Ваше имя</p>
+                                    <input type="text" id="popup-name">
+                                </label>
+                            </div>
+                            <div class="popup__tel">
+                                <label for="popup-tel">
+                                    <p>Ваш номер телефона</p>
+                                    <input type="tel" id="popup-tel" placeholder="+7(000)000-00-00" >
+                                </label>
+                            </div>
+                        </div>
+                        <div class="total-btn" id="submit">
+                            <button type="submit">Получить предложение</button>
+                        </div>
+                </div>
+            </div>
+        </div>
     </div>
-    
+    <script src="https://unpkg.com/imask"></script>
     <script>
 
-
+        var element = document.getElementById('popup-tel');
+        var maskOptions = {
+            mask: '+{7}(000)000-00-00'
+        };
+        var mask = IMask(element, maskOptions);
         
 
         var nameOrganization = document.getElementById('nameOrgan').value
@@ -296,21 +439,25 @@
             let sumOperation;
 
             if (document.getElementById('system-nalog__1').checked) {
-                if (countOperation <= 50) {
+                if (countOperation == 0) {
+                    sumOperation = 0;
+                }else if ((countOperation > 0)&&(countOperation <= 50)) {
                     sumOperation = 6000;
                 }else if ((countOperation > 50)&&(countOperation <= 100)) {
                     sumOperation = 11000;
-                }else if ((countOperation > 100)&&(countOperation < 200)) {
+                }else if ((countOperation > 100)&&(countOperation <=200)) {
                     sumOperation = 19000;
                 }else{
                     sumOperation = "Индивидуально";
                 }
             }else{
-                if (countOperation <= 50) {
+                if (countOperation == 0) {
+                    sumOperation = 0;
+                }else if ((countOperation > 0)&&(countOperation <= 50)) {
                     sumOperation = 9000;
                 }else if ((countOperation > 50)&&(countOperation <= 100)) {
                     sumOperation = 14000;
-                }else if ((countOperation > 100)&&(countOperation < 200)) {
+                }else if ((countOperation > 100)&&(countOperation <= 200)) {
                     sumOperation = 25000;
                 }else{
                     sumOperation = "Индивидуально";
@@ -371,6 +518,17 @@
             return(sumMilitary)
         }
 
+        function checkSucsecForm() {
+            let inputTel = document.getElementById('popup-tel').value;
+            let inputName = document.getElementById('popup-name').value;
+            
+            if ((Boolean(inputName))&&(inputTel.length == 16)) {
+                return(true);
+            } else {
+                return(false);
+            }
+        }
+
         function checkNameOrg() {
             let inputOrgan = document.getElementById('nameOrgan').value;
             
@@ -406,11 +564,49 @@
         }
 
         setInterval(refresh, 1);
+
+        const popupTrigger = document.querySelector('.popup-trigger');
+        const popup = document.querySelector('.popup');
+        const popupClose = document.querySelector('.popup__close');
+
+        popupTrigger.addEventListener('click', (e) => {
+            if (checkNameOrg() == true) {
+                popup.classList.add('show');
+                document.body.style.cssText = `overflow: hidden;`;
+            }else{
+                alert("Заполните наименование организации!");
+            }
+        });
+
+        popupClose.addEventListener('click', (e) => {
+            popup.classList.remove('show');
+            document.body.style.cssText = '';
+        });
+
+        // close on click on overlay
+
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                popup.classList.remove('show');
+                document.body.style.cssText = '';
+            }
+        });
+
+        // close on press of escape button
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === "Escape" && popup.classList.contains('show')) {
+            popup.classList.remove('show');
+            document.body.style.cssText = '';
+            }
+        });
+
+
        
         document.querySelector("#submit").onclick = function(){
            
 
-            if (checkNameOrg() == true) {
+            if (checkSucsecForm() == true) {
 
                 let testVar = calcAll();
                 let testVarName = document.getElementById('nameOrgan').value;
@@ -429,7 +625,7 @@
 
                 console.log("Отправилось");
             } else {
-                alert('Error');
+                alert('Заполните поля все поля');
             }
             
         }
