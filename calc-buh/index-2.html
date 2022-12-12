@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+.__range input
+{
+  outline: none;
+	-webkit-appearance: none;
+	background-color: #aaa;
+	height: 3px;
+	width: 100%;
+	margin: 10px auto;
+}
+.__range input::-webkit-slider-thumb
+{
+	-webkit-appearance: none;
+	width: 20px;
+	height: 20px;
+	background-color: #5CA7FC;
+	border-radius: 50%;
+	cursor: -moz-grab;
+	cursor: -webkit-grab; 
+}            
+.__range input::-moz-range-thumb
+{
+	-webkit-appearance: none;
+	width: 20px;
+	height: 20px;
+	background-color: #5CA7FC;
+	border-radius: 50%;
+	cursor: -moz-grab;
+	cursor: -webkit-grab; 
+}
+.__range input::-ms-thumb
+{
+	-webkit-appearance: none;
+	width: 20px;
+	height: 20px;
+	background-color: #5CA7FC;
+	border-radius: 50%;
+	cursor: -moz-grab;
+	cursor: -webkit-grab; 
+}
+.__range-step{
+	position: relative;                
+}
+
+.__range-max{
+	float: right;
+}
+.__range-step input::-webkit-slider-thumb
+{
+	background: transparent;
+}            
+.__range-step input::-moz-range-thumb
+{
+	background: transparent;
+}
+.__range-step input::-ms-thumb
+{
+	background: transparent;
+}
+.__range-step datalist {
+	position:relative;
+	display: flex;
+	justify-content: space-between;
+	height: auto;
+	bottom: 16px;
+	/* disable text selection */
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */                
+	user-select: none; /* Standard */
+	/* disable click events */
+	pointer-events:none;  
+}
+.__range-step datalist option {
+	width: 10px;
+	height: 10px;
+	min-height: 10px;
+	border-radius: 100px;
+	/* hide text */
+	white-space: nowrap;       
+  padding:0;
+  line-height: 40px;
+}
+
+
+ 
+</style>
+<body>
+    <div class="__range __range-step">
+        <input value="3" type="range" max="5" min="1" step="1" list="ticks1">
+        <datalist id="ticks1">
+          <option value="1">0</option>
+          <option value="2">50</option>
+          <option value="3">100</option>
+          <option value="4">200</option>
+          <option value="5">Свыше 200</option>
+        </datalist>
+</div>
+
+
+
+</body>
+<script>
+    document.querySelectorAll(".__range-step").forEach(function(ctrl) {
+	var el = ctrl.querySelector('input');        
+	var output = ctrl.querySelector('output'); 
+	var newPoint, newPlace, offset;
+	el.oninput =function(){ 
+		// colorize step options
+		ctrl.querySelectorAll("option").forEach(function(opt) {
+			if(opt.value<=el.valueAsNumber)                
+				opt.style.backgroundColor = '#5CA7FC';
+			else
+				opt.style.backgroundColor = '#aaa';
+		});           
+		// colorize before and after
+		var valPercent = (el.valueAsNumber  - parseInt(el.min)) / (parseInt(el.max) - parseInt(el.min));            
+		var style = 'background-image: -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop('+
+		valPercent+', #5CA7FC), color-stop('+
+		valPercent+', #aaa));';
+		el.style = style;         
+	};
+	el.oninput();    
+});
+
+window.onresize = function(){
+	document.querySelectorAll(".__range").forEach(function(ctrl) {
+		var el = ctrl.querySelector('input');    
+		el.oninput();    
+	});
+};
+</script>
+</html>
