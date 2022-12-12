@@ -17,6 +17,13 @@
     .calc-buh{
         max-width: 800px;
         margin: 0 auto;
+
+        
+        border-radius: 25px;
+
+        -webkit-box-shadow: 0px 4px 8px 0px rgba(34, 60, 80, 0.2);
+        -moz-box-shadow: 0px 4px 8px 0px rgba(34, 60, 80, 0.2);
+        box-shadow: 0px 4px 8px 0px rgba(34, 60, 80, 0.2);
     }
 
     .title-calc{
@@ -27,6 +34,8 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 50px;
+
+        border-radius: 25px 25px 0px 0px;
     }
 
     .title-calc h3{
@@ -48,11 +57,14 @@
 
     .slidecontainer {
         width: 100%;
+
+        display: none;
     }
 
     .slider {
         -webkit-appearance: none;
-        width: 100%;
+        width: 700px;
+        margin: 0 auto;
         height: 3px;
         border-radius: 5px;
         background: #d3d3d3;
@@ -84,8 +96,8 @@
         cursor: pointer;
     }
     input{
-        min-width: 80px;
-        height: 36px;
+        min-width: 50px;
+        height: 24px;
         font-size: 21px;
         color: #000;
         line-height: 100%;
@@ -108,6 +120,11 @@
         align-items: center;
     }
 
+    .wrapper_checkbox{
+        display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    }
+
     .input-extra__rf{
         gap: 10px;
 
@@ -128,7 +145,9 @@
 
     .wrapper-input__extra-rf{
         display: flex;
-        gap: 5px;
+        gap: 10px;
+
+        align-items: center;
     }
 
     .wrapper-input__extra{
@@ -169,6 +188,111 @@
         cursor: pointer;
     }
 
+    .box{
+        padding: 20px;
+
+        border-bottom: 1px solid #ADADAD;
+    }
+
+    .calc-buh .box:nth-child(8){
+        padding: 20px;
+        border-bottom: none;
+    }
+
+    .total-sum{
+        font-size: 24px;
+        
+    }
+
+    .total-sum span{
+        font-size: 36px;
+    }
+
+    .total-sum p{
+        font-size: 14px;
+        opacity: 0.5;
+    }
+
+    input:focus {
+        outline:solid #5CA7FC;
+    }
+
+    input:checked {
+        outline:none;
+    }
+
+    input:active {
+        outline:none;
+    }
+
+
+    .checkbox {
+      margin-bottom: 0.2em;
+    }
+
+    /* для элемента input c type="checkbox" */
+    .custom-checkbox>input {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+    }
+
+    /* для элемента label, связанного с .custom-checkbox */
+    .custom-checkbox>span {
+      display: inline-flex;
+      align-items: center;
+      user-select: none;
+    }
+
+    /* создание в label псевдоэлемента before со следующими стилями */
+    .custom-checkbox>span::before {
+      content: '';
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      flex-shrink: 0;
+      flex-grow: 0;
+      border: 1px solid #adb5bd;
+      border-radius: 0.25em;
+      margin-right: 0.5em;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 50% 50%;
+    }
+
+    /* стили при наведении курсора на checkbox */
+    .custom-checkbox>input:not(:disabled):not(:checked)+span:hover::before {
+      border-color: #b3d7ff;
+    }
+
+    /* стили для активного чекбокса (при нажатии на него) */
+    .custom-checkbox>input:not(:disabled):active+span::before {
+      background-color: #b3d7ff;
+      border-color: #b3d7ff;
+    }
+
+    /* стили для чекбокса, находящегося в фокусе */
+    .custom-checkbox>input:focus+span::before {
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    /* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
+    .custom-checkbox>input:focus:not(:checked)+span::before {
+      border-color: #80bdff;
+    }
+
+    /* стили для чекбокса, находящегося в состоянии checked */
+    .custom-checkbox>input:checked+span::before {
+      border-color: #0b76ef;
+      background-color: #0b76ef;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+    }
+
+    /* стили для чекбокса, находящегося в состоянии disabled */
+    .custom-checkbox>input:disabled+span::before {
+      background-color: #e9ecef;
+    }
+
     /* Popup */
 
     .popup-trigger {
@@ -179,6 +303,8 @@
         font-size: 16px;
         color: white;
         cursor: pointer;
+
+        max-height: 80px;
     }
     .popup-trigger:hover {
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
@@ -276,6 +402,93 @@
     display: flex;
     flex-direction: column;
 }
+
+.__range input
+{
+    outline: none;
+    -webkit-appearance: none;
+    background-color: #aaa;
+    height: 3px;
+    width: 100%;
+    margin: 5px auto;
+    padding: 0;
+    border: none;
+}
+.__range input::-webkit-slider-thumb
+{
+	-webkit-appearance: none;
+	width: 20px;
+	height: 20px;
+	background-color: #5CA7FC;
+	border-radius: 50%;
+	cursor: -moz-grab;
+	cursor: -webkit-grab; 
+}            
+.__range input::-moz-range-thumb
+{
+	-webkit-appearance: none;
+	width: 20px;
+	height: 20px;
+	background-color: #5CA7FC;
+	border-radius: 50%;
+	cursor: -moz-grab;
+	cursor: -webkit-grab; 
+}
+.__range input::-ms-thumb
+{
+	-webkit-appearance: none;
+	width: 20px;
+	height: 20px;
+	background-color: #5CA7FC;
+	border-radius: 50%;
+	cursor: -moz-grab;
+	cursor: -webkit-grab; 
+}
+.__range-step{
+	position: relative;    
+    
+    width: 70%;
+    margin: 0 auto;
+}
+
+.__range-max{
+	float: right;
+}
+.__range-step input::-webkit-slider-thumb
+{
+	background: transparent;
+}            
+.__range-step input::-moz-range-thumb
+{
+	background: transparent;
+}
+.__range-step input::-ms-thumb
+{
+	background: transparent;
+}
+.__range-step datalist {
+	position:relative;
+	display: flex;
+	justify-content: space-between;
+	height: auto;
+	bottom: 16px;
+	/* disable text selection */
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */                
+	user-select: none; /* Standard */
+	/* disable click events */
+	pointer-events:none;  
+}
+.__range-step datalist option {
+	width: 20px;
+	height: 20px;
+	border-radius: 100px;
+	/* hide text */
+	white-space: nowrap;       
+  padding:0;
+  line-height: 70px;
+}
  
 </style>
 
@@ -313,20 +526,43 @@
                 <p>Укажите количество бухгалерских операций</p>
         
                 <div class="slidecontainer">
-                    <input type="range" min="0" max="250" value="50" step="50" class="slider" id="myRange">
+                    <input type="range" min="0" max="250" value="50" step="50" class="slider" >
                     <p>Операций: <span id="demo"></span></p>
+                </div>
+
+                <div class="__range __range-step">
+                    <input id="myRange" value="3" type="range" max="5" min="1" step="1" list="ticks1">
+                    <datalist id="ticks1">
+                      <option value="1">0</option>
+                      <option value="2">50</option>
+                      <option value="3">100</option>
+                      <option value="4">200</option>
+                      <option value="5">Свыше 200</option>
+                    </datalist>
+                </div>
+                
+            </div>
+
+            <div class="box">
+                <p>Дополнительные услуги</p>
+        
+                <div class="wrapper_checkbox_2">
+                    <label class="custom-checkbox">
+                        <input type="checkbox"  id="extra-dop" name="system-nalog" >
+                        <span>Ведение клиент-банка и ККТ (контрольно-кассовой техники)</span>
+                    </label>
                 </div>
                 
             </div>
     
-            <div class="box" style="display: flex;justify-content: space-between;">
+            <div class="box" style="display: flex;justify-content: space-between; gap: 50px;">
                 <div class="wrapper_checkbox">
-                    <label for="dop-item_1">
-                        <input type="checkbox" id="extra-item_1" name="system-nalog" >
+                    <label class="custom-checkbox">
+                        <input type="checkbox"  id="extra-item_1" name="system-nalog"  >
                         <span>Расчет и начисление зарплаты</span>
                     </label>
         
-                    <label for="dop-item_1">
+                    <label class="custom-checkbox">
                         <input type="checkbox" id="extra-item_2" name="system-nalog" >
                         <span>Кадровый учет сотрудников</span>
                     </label>
@@ -347,7 +583,7 @@
                             <input type="number" name="" id="countForeigners">
                         </div>
                     </div>
-                    <label for="input-extra__chbox">
+                    <label class="custom-checkbox">
                         <input type="checkbox" id="input-extra__chbox" name="">
                         <span>Нужна ли подача уведомлений <br>за иностранца?</span>
                     </label>
@@ -357,7 +593,7 @@
             </div>
 
             <div class="box" style="display:flex; justify-content: space-between;">
-                <label for="dop-item_1">
+                <label class="custom-checkbox">
                     <input type="checkbox" id="extra-Military" name="system-nalog">
                     <span>Ведение воинского учета</span>
                 </label>
@@ -372,7 +608,8 @@
 
             <div class="box total">
                 <div class="total-sum">
-                    <span id="totalSum">0 руб</span> 
+                    ИТОГО: <span id="totalSum">0 руб</span> <br>
+                    <p>Окончательная стоимость<br>может немного отличаться</p>
                 </div>
                 <button class="popup-trigger">Получить предложение</button>
             </div>
@@ -438,26 +675,51 @@
             
             let sumOperation;
 
-            if (document.getElementById('system-nalog__1').checked) {
-                if (countOperation == 0) {
+            if ((document.getElementById('system-nalog__1').checked)) {
+                if (document.getElementById('extra-dop').checked) {
+                    if (countOperation == 1) {
+                        sumOperation = 0;
+                    }else if (countOperation == 2) {
+                        sumOperation = 8000;
+                    }else if (countOperation == 3) {
+                        sumOperation = 15000;
+                    }else if (countOperation == 4) {
+                        sumOperation = 25000;
+                    }else{
+                        sumOperation = "Индивидуально";
+                    }
+                }else
+                if (countOperation == 1) {
                     sumOperation = 0;
-                }else if ((countOperation > 0)&&(countOperation <= 50)) {
+                }else if (countOperation == 2) {
                     sumOperation = 6000;
-                }else if ((countOperation > 50)&&(countOperation <= 100)) {
+                }else if (countOperation == 3) {
                     sumOperation = 11000;
-                }else if ((countOperation > 100)&&(countOperation <=200)) {
+                }else if (countOperation == 4) {
                     sumOperation = 19000;
                 }else{
                     sumOperation = "Индивидуально";
                 }
-            }else{
-                if (countOperation == 0) {
+            }else if (document.getElementById('extra-dop').checked){
+                if (countOperation == 1) {
                     sumOperation = 0;
-                }else if ((countOperation > 0)&&(countOperation <= 50)) {
+                }else if (countOperation == 2) {
+                    sumOperation = 11000;
+                }else if (countOperation == 3) {
+                    sumOperation = 18000;
+                }else if (countOperation == 4) {
+                    sumOperation = 31000;
+                }else{
+                    sumOperation = "Индивидуально";
+                }
+            }else{
+                if (countOperation == 1) {
+                    sumOperation = 0;
+                }else if (countOperation == 2) {
                     sumOperation = 9000;
-                }else if ((countOperation > 50)&&(countOperation <= 100)) {
+                }else if (countOperation == 3) {
                     sumOperation = 14000;
-                }else if ((countOperation > 100)&&(countOperation <= 200)) {
+                }else if (countOperation == 4) {
                     sumOperation = 25000;
                 }else{
                     sumOperation = "Индивидуально";
@@ -517,12 +779,12 @@
             
             return(sumMilitary)
         }
+        
 
         function checkSucsecForm() {
             let inputTel = document.getElementById('popup-tel').value;
             let inputName = document.getElementById('popup-name').value;
-            
-            if ((Boolean(inputName))&&(inputTel.length == 16)) {
+            if ((Boolean(inputName))&&(inputTel.length == 16)&&(((inputTel[1])==7)||(inputTel[1])==8)) {
                 return(true);
             } else {
                 return(false);
@@ -608,10 +870,14 @@
 
             if (checkSucsecForm() == true) {
 
+                const popupClose = document.querySelector('.popup__close');
                 let testVar = calcAll();
                 let testVarName = document.getElementById('nameOrgan').value;
 
-                let textToSend = `Заявка от : ${testVarName} %0A Сумма : ${testVar}`;
+                let inputTel = document.getElementById('popup-tel').value;
+                let inputName = document.getElementById('popup-name').value;
+
+                let textToSend = `Заявка от : ${inputName}%0AОрганизация:${testVarName}%0AСумма : ${testVar} руб%0AТелефон : ${inputTel}`;
 
                 let token = "5464449977:AAHjqrTJCBo-9LtPw73MxJWV08Mnq44ufyY"
 
@@ -624,12 +890,52 @@
                 api.send();
 
                 console.log("Отправилось");
+            popup.classList.remove('show');
+            document.body.style.cssText = '';
+
+            alert("Спасибо!\nВаша заявка была успешна отправлена!")
+
             } else {
                 alert('Заполните поля все поля');
             }
             
         }
 
+        document.querySelectorAll(".__range-step").forEach(function(ctrl) {
+	var el = ctrl.querySelector('input');        
+	var output = ctrl.querySelector('output'); 
+	var newPoint, newPlace, offset;
+	el.oninput =function(){ 
+		// colorize step options
+		ctrl.querySelectorAll("option").forEach(function(opt) {
+			if(opt.value<=el.valueAsNumber){                
+				opt.style.backgroundColor = '#5CA7FC';
+                opt.style.width = '20px';
+                opt.style.height = '20px';
+        }
+			else{
+                opt.style.backgroundColor = '#aaa';
+                opt.style.width = '2px';
+                opt.style.height = '2px';
+            }
+				
+		});           
+		// colorize before and after
+		var valPercent = (el.valueAsNumber  - parseInt(el.min) + 0.1) / (parseInt(el.max) - parseInt(el.min));            
+		var style = 'background-image: -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop('+
+		valPercent+', #5CA7FC), color-stop('+
+		valPercent+', #aaa));';
+		el.style = style;         
+	};
+	el.oninput();    
+});
+
+window.onresize = function(){
+	document.querySelectorAll(".__range").forEach(function(ctrl) {
+		var el = ctrl.querySelector('input');    
+		el.oninput();    
+	});
+};
     </script>
 </body>
 </html>
