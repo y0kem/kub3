@@ -33,7 +33,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
 
         border-radius: 25px 25px 0px 0px;
     }
@@ -52,7 +52,6 @@
         display: flex;
         justify-content: space-between;
 
-        margin-bottom: 20px;
     }
 
     .slidecontainer {
@@ -191,6 +190,8 @@
     .box{
         padding: 20px;
 
+        padding-bottom: 30px;
+
         border-bottom: 1px solid #ADADAD;
     }
 
@@ -211,6 +212,10 @@
     .total-sum p{
         font-size: 14px;
         opacity: 0.5;
+    }
+
+    .range-input{
+        padding-bottom: 60px;
     }
 
     input:focus {
@@ -283,8 +288,8 @@
 
     /* стили для чекбокса, находящегося в состоянии checked */
     .custom-checkbox>input:checked+span::before {
-      border-color: #0b76ef;
-      background-color: #0b76ef;
+      border-color: #5CA7FC;
+      background-color: #5CA7FC;
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
     }
 
@@ -403,92 +408,198 @@
     flex-direction: column;
 }
 
-.__range input
-{
-    outline: none;
-    -webkit-appearance: none;
-    background-color: #aaa;
-    height: 3px;
-    width: 100%;
-    margin: 5px auto;
-    padding: 0;
-    border: none;
+
+ #debt-amount-slider {
+	 display: flex;
+	 flex-direction: row;
+	 align-content: stretch;
+	 position: relative;
+	 width: 100%;
+	 height: 50px;
+	 user-select: none;
+
+     margin-left: -60px;
 }
-.__range input::-webkit-slider-thumb
-{
-	-webkit-appearance: none;
-	width: 20px;
-	height: 20px;
-	background-color: #5CA7FC;
-	border-radius: 50%;
-	cursor: -moz-grab;
-	cursor: -webkit-grab; 
-}            
-.__range input::-moz-range-thumb
-{
-	-webkit-appearance: none;
-	width: 20px;
-	height: 20px;
-	background-color: #5CA7FC;
-	border-radius: 50%;
-	cursor: -moz-grab;
-	cursor: -webkit-grab; 
+ #debt-amount-slider::before {
+	 content: " ";
+	 position: absolute;
+	 height: 2px;
+	 width: 100%;
+	 width: calc(100% * (4 / 5));
+	 top: 50%;
+	 left: 50%;
+	 transform: translate(-50%, -50%);
+	 background: #5CA7FC;
 }
-.__range input::-ms-thumb
-{
-	-webkit-appearance: none;
-	width: 20px;
-	height: 20px;
-	background-color: #5CA7FC;
-	border-radius: 50%;
-	cursor: -moz-grab;
-	cursor: -webkit-grab; 
+ #debt-amount-slider input, #debt-amount-slider label {
+	 box-sizing: border-box;
+	 flex: 1;
+	 user-select: none;
+	 cursor: pointer;
 }
-.__range-step{
-	position: relative;    
-    
-    width: 70%;
-    margin: 0 auto;
+ #debt-amount-slider label {
+	 display: inline-block;
+	 position: relative;
+	 width: 20%;
+	 height: 100%;
+	 user-select: none;
+}
+ #debt-amount-slider label::before {
+	 content: attr(data-debt-amount);
+	 position: absolute;
+	 left: 50%;
+	 padding-top: 10px;
+	 transform: translate(-50%, 45px);
+	 font-size: 14px;
+	 letter-spacing: 0.4px;
+	 font-weight: 400;
+	 white-space: nowrap;
+	 opacity: 0.85;
+	 transition: all 0.15s ease-in-out;
+}
+ #debt-amount-slider label::after {
+	 content: " ";
+	 position: absolute;
+	 left: 50%;
+	 top: 50%;
+	 transform: translate(-50%, -50%);
+	 width: 30px;
+	 height: 30px;
+	 border: 2px solid #5CA7FC;
+	 background: #fff;
+	 border-radius: 50%;
+	 pointer-events: none;
+	 user-select: none;
+	 z-index: 1;
+	 cursor: pointer;
+	 transition: all 0.15s ease-in-out;
+}
+ #debt-amount-slider label:hover::after {
+	 transform: translate(-50%, -50%) scale(1.25);
+}
+ #debt-amount-slider input {
+	 display: none;
+}
+ #debt-amount-slider input:checked + label::before {
+	 font-weight: 800;
+	 opacity: 1;
+}
+ #debt-amount-slider input:checked + label::after {
+	 border-width: 4px;
+	 transform: translate(-50%, -50%) scale(0.75);
+}
+ #debt-amount-slider input:checked ~ #debt-amount-pos {
+	 opacity: 1;
+}
+ #debt-amount-slider input:checked:nth-child(1) ~ #debt-amount-pos {
+	 left: 10%;
+}
+ #debt-amount-slider input:checked:nth-child(3) ~ #debt-amount-pos {
+	 left: 30%;
+}
+ #debt-amount-slider input:checked:nth-child(5) ~ #debt-amount-pos {
+	 left: 50%;
+}
+ #debt-amount-slider input:checked:nth-child(7) ~ #debt-amount-pos {
+	 left: 70%;
+}
+ #debt-amount-slider input:checked:nth-child(9) ~ #debt-amount-pos {
+	 left: 90%;
+}
+ #debt-amount-slider #debt-amount-pos {
+	 display: block;
+	 position: absolute;
+	 top: 50%;
+	 width: 12px;
+	 height: 12px;
+	 background: #5CA7FC;
+	 border-radius: 50%;
+	 transition: all 0.15s ease-in-out;
+	 transform: translate(-50%, -50%);
+	 border: 2px solid #5CA7FC;
+	 opacity: 0;
+	 z-index: 2;
 }
 
-.__range-max{
-	float: right;
+ @keyframes spin {
+	 from {
+		 transform: rotate(0deg);
+		 width: 24px;
+		 opacity: 1;
+		 margin-right: 12px;
+	}
+	 to {
+		 transform: rotate(360deg);
+		 width: 24px;
+		 opacity: 1;
+		 margin-right: 12px;
+	}
 }
-.__range-step input::-webkit-slider-thumb
-{
-	background: transparent;
-}            
-.__range-step input::-moz-range-thumb
-{
-	background: transparent;
+
+.showBtn img{
+    width: 32px;
+    height: 32px;
 }
-.__range-step input::-ms-thumb
-{
-	background: transparent;
+
+.showBtn{
+    width: 32px;
+    height: 32px;
 }
-.__range-step datalist {
-	position:relative;
-	display: flex;
-	justify-content: space-between;
-	height: auto;
-	bottom: 16px;
-	/* disable text selection */
-	-webkit-user-select: none; /* Safari */        
-	-moz-user-select: none; /* Firefox */
-	-ms-user-select: none; /* IE10+/Edge */                
-	user-select: none; /* Standard */
-	/* disable click events */
-	pointer-events:none;  
+
+.extra{
+    display: flex;
+    gap: 20px;
+
+    align-items: center;
 }
-.__range-step datalist option {
-	width: 20px;
-	height: 20px;
-	border-radius: 100px;
-	/* hide text */
-	white-space: nowrap;       
-  padding:0;
-  line-height: 70px;
+
+/* #extra-block{
+    display: none;
+} */
+
+.showBtn img{
+  transform: rotate(0deg);
+  transition: transform 1s linear;
 }
+
+.open{
+  transform: rotate(180deg);
+  transition: transform 1s linear;
+}
+
+@media (max-width: 768px) {
+    .checkbox_wrapper{
+        flex-direction: column;
+        row-gap: 30px;
+
+    }
+
+    #debt-amount-slider{
+        margin: 0;
+    }
+
+    #debt-amount-slider label::before{
+        font-size: 10px;
+    }
+
+    .employee, .military, .total{
+        flex-direction: column;
+    }
+
+    .employee{
+        gap: 10px !important;
+    }
+
+    .employee .wrapper-input__extra-rf{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .title-calc h3{
+        text-align: center;
+    }
+}
+ 
  
 </style>
 
@@ -503,7 +614,7 @@
             <div class="box">
                 <div class="checkbox_wrapper">
                     <label class="input_calc"><span>Наименование организации</span><input type="text" id="nameOrgan" class="input-project" /></label>
-                    <label class="input_calc"><span>Сфера деятельности</span><input type="text" class="input-name" /></label>
+                    <label class="input_calc"><span>Сфера деятельности</span><input type="text" id="fieldOfActivity" class="input-name" /></label>
                 </div>
                 <!-- <span class="important_info">"Укажите наименование юридического лица полностью : ООО "__", ЗАО "__", АО "__", ИП, НКО, ПАО и т.д."</span> -->
             </div>
@@ -522,88 +633,97 @@
                 </div>
             </div>
         
-            <div class="box">
+            <div class="box range-input">
                 <p>Укажите количество бухгалерских операций</p>
-        
-                <div class="slidecontainer">
-                    <input type="range" min="0" max="250" value="50" step="50" class="slider" >
-                    <p>Операций: <span id="demo"></span></p>
-                </div>
 
-                <div class="__range __range-step">
-                    <input id="myRange" value="3" type="range" max="5" min="1" step="1" list="ticks1">
-                    <datalist id="ticks1">
-                      <option value="1">0</option>
-                      <option value="2">50</option>
-                      <option value="3">100</option>
-                      <option value="4">200</option>
-                      <option value="5">Свыше 200</option>
-                    </datalist>
+                <div id="debt-amount-slider">
+                    <input type="radio" name="debt-amount" id="1" value="1" checked required>
+                    <label for="1" data-debt-amount="0"></label>
+                    <input type="radio" name="debt-amount" id="2" value="2" required>
+                    <label for="2" data-debt-amount="50"></label>
+                    <input type="radio" name="debt-amount" id="3" value="3" required>
+                    <label for="3" data-debt-amount="100"></label>
+                    <input type="radio" name="debt-amount" id="4" value="4" required>
+                    <label for="4" data-debt-amount="200"></label>
+                    <input type="radio" name="debt-amount" id="5" value="5" required>
+                    <label for="5" data-debt-amount="Свыше 200"></label>
+                    <div id="debt-amount-pos"></div>
                 </div>
                 
             </div>
 
-            <div class="box">
+            <div class="box extra">
                 <p>Дополнительные услуги</p>
+                <div class="showBtn" id="showBtn">
+                    <img id="showBtnImg" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Arrow-down.svg" alt="">
+                </div>
         
-                <div class="wrapper_checkbox_2">
-                    <label class="custom-checkbox">
-                        <input type="checkbox"  id="extra-dop" name="system-nalog" >
-                        <span>Ведение клиент-банка и ККТ (контрольно-кассовой техники)</span>
-                    </label>
-                </div>
-                
-            </div>
-    
-            <div class="box" style="display: flex;justify-content: space-between; gap: 50px;">
-                <div class="wrapper_checkbox">
-                    <label class="custom-checkbox">
-                        <input type="checkbox"  id="extra-item_1" name="system-nalog"  >
-                        <span>Расчет и начисление зарплаты</span>
-                    </label>
-        
-                    <label class="custom-checkbox">
-                        <input type="checkbox" id="extra-item_2" name="system-nalog" >
-                        <span>Кадровый учет сотрудников</span>
-                    </label>
-                </div>
-
-                <div class="wrapper-input__extra">
-                    <p>Укажите количество человек в штате</p>
-
-                    <div class="wrapper-input__extra-rf">
-                        <p>РФ</p>
-                        <div class="input-extra__rf">
-                            <input type="number" name="" id="countRf">
-                        </div>
-                    </div>
-                    <div class="wrapper-input__extra-rf">
-                        <p>Иностранцы</p>
-                        <div class="input-extra__rf">
-                            <input type="number" name="" id="countForeigners">
-                        </div>
-                    </div>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" id="input-extra__chbox" name="">
-                        <span>Нужна ли подача уведомлений <br>за иностранца?</span>
-                    </label>
-                </div>
-    
-    
             </div>
 
-            <div class="box" style="display:flex; justify-content: space-between;">
-                <label class="custom-checkbox">
-                    <input type="checkbox" id="extra-Military" name="system-nalog">
-                    <span>Ведение воинского учета</span>
-                </label>
+            <div class="extra-block" id="extra-block">
 
-                <div class="wrapper-input__extra-rf military">
-                    <p>Количество военнообязанных сотрудников</p>
-                    <div class="input-extra__rf">
-                        <input type="number" name="" id="countMilitary">
+                <div class="box">
+        
+                    <div class="wrapper_checkbox_2">
+                        <label class="custom-checkbox">
+                            <input type="checkbox"  id="extra-dop" name="system-nalog" >
+                            <span>Ведение клиент-банка и ККТ (контрольно-кассовой техники)</span>
+                        </label>
+                    </div>
+                    
+                </div>
+        
+                <div class="box employee" style="display: flex;justify-content: space-between; gap: 50px;">
+                    <div class="wrapper_checkbox">
+                        <label class="custom-checkbox">
+                            <input type="checkbox"  id="extra-item_1" name="system-nalog"  >
+                            <span>Расчет и начисление зарплаты</span>
+                        </label>
+            
+                        <label class="custom-checkbox">
+                            <input type="checkbox" id="extra-item_2" name="system-nalog" >
+                            <span>Кадровый учет сотрудников</span>
+                        </label>
+                    </div>
+    
+                    <div class="wrapper-input__extra">
+                        <p>Укажите количество человек в штате</p>
+    
+                        <div class="wrapper-input__extra-rf">
+                            <p>РФ</p>
+                            <div class="input-extra__rf">
+                                <input type="number" name="" id="countRf">
+                            </div>
+                        </div>
+                        <div class="wrapper-input__extra-rf">
+                            <p>Иностранцы</p>
+                            <div class="input-extra__rf">
+                                <input type="number" name="" id="countForeigners">
+                            </div>
+                        </div>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" id="input-extra__chbox" name="">
+                            <span>Нужна ли подача уведомлений <br>за иностранца?</span>
+                        </label>
+                    </div>
+        
+        
+                </div>
+    
+                <div class="box military" style="display:flex; justify-content: space-between;">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="extra-Military" name="system-nalog">
+                        <span>Ведение воинского учета</span>
+                    </label>
+    
+                    <div class="wrapper-input__extra-rf military">
+                        <p>Количество военнообязанных сотрудников</p>
+                        <div class="input-extra__rf">
+                            <input type="number" name="" id="countMilitary">
+                        </div>
                     </div>
                 </div>
+
             </div>
 
             <div class="box total">
@@ -651,75 +771,76 @@
         };
         var mask = IMask(element, maskOptions);
         
-
+        let extraBlocks = document.getElementById("extra-block");
+        extraBlocks.style.display = "none";
         var nameOrganization = document.getElementById('nameOrgan').value
         
         var slider = document.getElementById("myRange");
         var output = document.getElementById("demo");
-        output.innerHTML = slider.value;
+        // output.innerHTML = slider.value;
         
-        slider.oninput = function() {
-            if (this.value <= 200) {
-                output.innerHTML = this.value;
-            }else{
-                output.innerHTML = "Индивидуально";
-            }
-            console.log();
-        }
-        function getData() {
+        // slider.oninput = function() {
+        //     if (this.value <= 200) {
+        //         output.innerHTML = this.value;
+        //     }else{
+        //         output.innerHTML = "Индивидуально";
+        //     }
+        //     console.log();
+        // }
+        // function getData() {
             
-        }
+        // }
 
         function calcOperation() {
-            let countOperation = document.getElementById("myRange").value;
+            // let countOperation = document.getElementById("myRange").value;
             
             let sumOperation;
 
             if ((document.getElementById('system-nalog__1').checked)) {
                 if (document.getElementById('extra-dop').checked) {
-                    if (countOperation == 1) {
+                    if (document.getElementById('1').checked) {
                         sumOperation = 0;
-                    }else if (countOperation == 2) {
+                    }else if (document.getElementById('2').checked) {
                         sumOperation = 8000;
-                    }else if (countOperation == 3) {
+                    }else if (document.getElementById('3').checked) {
                         sumOperation = 15000;
-                    }else if (countOperation == 4) {
+                    }else if (document.getElementById('4').checked) {
                         sumOperation = 25000;
                     }else{
                         sumOperation = "Индивидуально";
                     }
                 }else
-                if (countOperation == 1) {
+                if (document.getElementById('1').checked) {
                     sumOperation = 0;
-                }else if (countOperation == 2) {
+                }else if (document.getElementById('2').checked) {
                     sumOperation = 6000;
-                }else if (countOperation == 3) {
+                }else if (document.getElementById('3').checked) {
                     sumOperation = 11000;
-                }else if (countOperation == 4) {
+                }else if (document.getElementById('4').checked) {
                     sumOperation = 19000;
                 }else{
                     sumOperation = "Индивидуально";
                 }
             }else if (document.getElementById('extra-dop').checked){
-                if (countOperation == 1) {
+                if (document.getElementById('1').checked) {
                     sumOperation = 0;
-                }else if (countOperation == 2) {
+                }else if (document.getElementById('2').checked) {
                     sumOperation = 11000;
-                }else if (countOperation == 3) {
+                }else if (document.getElementById('3').checked) {
                     sumOperation = 18000;
-                }else if (countOperation == 4) {
+                }else if (document.getElementById('4').checked) {
                     sumOperation = 31000;
                 }else{
                     sumOperation = "Индивидуально";
                 }
             }else{
-                if (countOperation == 1) {
+                if (document.getElementById('1').checked) {
                     sumOperation = 0;
-                }else if (countOperation == 2) {
+                }else if (document.getElementById('2').checked) {
                     sumOperation = 9000;
-                }else if (countOperation == 3) {
+                }else if (document.getElementById('3').checked) {
                     sumOperation = 14000;
-                }else if (countOperation == 4) {
+                }else if (document.getElementById('4').checked) {
                     sumOperation = 25000;
                 }else{
                     sumOperation = "Индивидуально";
@@ -862,13 +983,95 @@
             document.body.style.cssText = '';
             }
         });
-
+        
+        document.querySelector("#showBtn").onclick = function(){
+            let arrow = document.getElementById("showBtnImg")
+            let x = document.getElementById("extra-block");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                    document.getElementById("showBtnImg").style.transform = "rotate(180deg)";
+                } else {
+                    x.style.display = "none";
+                    document.getElementById("showBtnImg").style.transform = "rotate(360deg)";
+                }
+        }
 
        
         document.querySelector("#submit").onclick = function(){
            
 
             if (checkSucsecForm() == true) {
+
+                let systemNalog = null;
+                let countOperation = null;
+                let extraDops = null;
+                let extraItem_1 = null;
+                let extraItem_2 = null;
+                let countMilitary = document.getElementById("countMilitary").value;
+
+                let countRf = document.getElementById("countRf").value;
+                let countForeigners = document.getElementById("countForeigners").value;
+                let conutEmployee = Number(countRf) + Number(countForeigners);
+                let itemMilitary = null;
+                let extraItem_3 = null;
+
+                let fieldOfActivity = document.getElementById("fieldOfActivity").value;
+
+
+
+                if ((document.getElementById('system-nalog__1').checked)) {
+                    systemNalog = "УСН";
+                }else{
+                    systemNalog = "ОСНО (НДС)";
+                }
+
+                if (document.getElementById('1').checked) {
+                    countOperation = "0";
+                }else if (document.getElementById('2').checked) {
+                    countOperation = "50";
+                }else if (document.getElementById('3').checked) {
+                    countOperation = "100";
+                }else if (document.getElementById('4').checked) {
+                    countOperation = "200";
+                }else{
+                    countOperation = "Свыше 200";
+                }
+
+                if (document.getElementById('extra-dop').checked) {
+                    extraDops = "Да"
+                }else{
+                    extraDops = "Нет"
+                }
+
+                if (document.getElementById('extra-item_1').checked) {
+                    extraItem_1 = "Да"
+                }else{
+                    extraItem_1 = "Нет"
+                }
+
+                if ((document.getElementById('extra-item_2').checked)) {
+                    extraItem_2 = "Да"
+                }else{
+                    extraItem_2 = "Нет"
+                }
+
+                if ((document.getElementById('input-extra__chbox').checked)) {
+                    extraItem_3 = "Да"
+                }else{
+                    extraItem_3 = "Нет"
+                }
+
+                if (document.getElementById('extra-Military').checked) {
+                    itemMilitary = "Да";
+                }else{
+                    itemMilitary = "Нет";
+                }
+
+                if (fieldOfActivity == null) {
+                    fieldOfActivity = "Не заполнено"
+                }
+
+
 
                 const popupClose = document.querySelector('.popup__close');
                 let testVar = calcAll();
@@ -877,7 +1080,18 @@
                 let inputTel = document.getElementById('popup-tel').value;
                 let inputName = document.getElementById('popup-name').value;
 
-                let textToSend = `Заявка от : ${inputName}%0AОрганизация:${testVarName}%0AСумма : ${testVar} руб%0AТелефон : ${inputTel}`;
+                let textToSend = `Заявка от : ${inputName}%0AОрганизация:${testVarName}%0AСумма : ${testVar} руб%0AТелефон : ${inputTel}
+                %0AСфера деятельности: ${fieldOfActivity}
+                %0A%0AСистема налогоблажения: ${systemNalog}
+                %0AКоличество бухгалерских операций: ${countOperation}
+                %0AКлиент-банк: ${extraDops}
+                %0AРасчет и начисление З/П: ${extraItem_1}
+                %0AКол-во сотрудников РФ: ${countRf}
+                %0AКол-во сотрудников Иностранцев: ${countForeigners}
+                %0AПодача уведомления за иностранца: ${extraItem_3}
+                %0AКол-во сотрудников ОБЩЕЕ: ${conutEmployee}
+                %0AВедения воинского учета : ${itemMilitary}
+                %0AКол-во военнообязанных сотрудников: ${countMilitary}`;
 
                 let token = "5464449977:AAHjqrTJCBo-9LtPw73MxJWV08Mnq44ufyY"
 
@@ -900,42 +1114,6 @@
             }
             
         }
-
-        document.querySelectorAll(".__range-step").forEach(function(ctrl) {
-	var el = ctrl.querySelector('input');        
-	var output = ctrl.querySelector('output'); 
-	var newPoint, newPlace, offset;
-	el.oninput =function(){ 
-		// colorize step options
-		ctrl.querySelectorAll("option").forEach(function(opt) {
-			if(opt.value<=el.valueAsNumber){                
-				opt.style.backgroundColor = '#5CA7FC';
-                opt.style.width = '20px';
-                opt.style.height = '20px';
-        }
-			else{
-                opt.style.backgroundColor = '#aaa';
-                opt.style.width = '2px';
-                opt.style.height = '2px';
-            }
-				
-		});           
-		// colorize before and after
-		var valPercent = (el.valueAsNumber  - parseInt(el.min) + 0.1) / (parseInt(el.max) - parseInt(el.min));            
-		var style = 'background-image: -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop('+
-		valPercent+', #5CA7FC), color-stop('+
-		valPercent+', #aaa));';
-		el.style = style;         
-	};
-	el.oninput();    
-});
-
-window.onresize = function(){
-	document.querySelectorAll(".__range").forEach(function(ctrl) {
-		var el = ctrl.querySelector('input');    
-		el.oninput();    
-	});
-};
     </script>
 </body>
 </html>
