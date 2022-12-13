@@ -46,6 +46,8 @@
     .input_calc{
         display: flex;
         flex-direction: column;
+        align-items: baseline;
+        row-gap: 20px;
     }
 
     .checkbox_wrapper{
@@ -584,6 +586,10 @@
         flex-direction: column;
     }
 
+    .military label{
+        align-items: baseline;
+    }
+
     .employee{
         gap: 10px !important;
     }
@@ -595,6 +601,14 @@
 
     .title-calc h3{
         text-align: center;
+    }
+
+    .wrapper_checkbox{
+        row-gap: 20px;
+    }
+
+    .wrapper-input__extra{
+        row-gap: 10px;
     }
 }
  
@@ -714,7 +728,7 @@
                         <span>Ведение воинского учета</span>
                     </label>
     
-                    <div class="wrapper-input__extra-rf military">
+                    <div class="wrapper-input__extra-rf military-inp">
                         <p>Количество военнообязанных сотрудников</p>
                         <div class="input-extra__rf">
                             <input type="number" name="" id="countMilitary">
