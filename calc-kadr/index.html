@@ -409,133 +409,15 @@
     flex-direction: column;
 }
 
-
- #debt-amount-slider {
-	 display: flex;
-	 flex-direction: row;
-	 align-content: stretch;
-	 position: relative;
-	 width: 100%;
-	 height: 50px;
-	 user-select: none;
-
-     margin-left: -60px;
-}
- #debt-amount-slider::before {
-	 content: " ";
-	 position: absolute;
-	 height: 2px;
-	 width: 100%;
-	 width: calc(100% * (4 / 5));
-	 top: 50%;
-	 left: 50%;
-	 transform: translate(-50%, -50%);
-	 background: #5CA7FC;
-}
- #debt-amount-slider input, #debt-amount-slider label {
-	 box-sizing: border-box;
-	 flex: 1;
-	 user-select: none;
-	 cursor: pointer;
-}
- #debt-amount-slider label {
-	 display: inline-block;
-	 position: relative;
-	 width: 20%;
-	 height: 100%;
-	 user-select: none;
-}
- #debt-amount-slider label::before {
-	 content: attr(data-debt-amount);
-	 position: absolute;
-	 left: 50%;
-	 padding-top: 10px;
-	 transform: translate(-50%, 45px);
-	 font-size: 14px;
-	 letter-spacing: 0.4px;
-	 font-weight: 400;
-	 white-space: nowrap;
-	 opacity: 0.85;
-	 transition: all 0.15s ease-in-out;
-}
- #debt-amount-slider label::after {
-	 content: " ";
-	 position: absolute;
-	 left: 50%;
-	 top: 50%;
-	 transform: translate(-50%, -50%);
-	 width: 30px;
-	 height: 30px;
-	 border: 2px solid #5CA7FC;
-	 background: #fff;
-	 border-radius: 50%;
-	 pointer-events: none;
-	 user-select: none;
-	 z-index: 1;
-	 cursor: pointer;
-	 transition: all 0.15s ease-in-out;
-}
- #debt-amount-slider label:hover::after {
-	 transform: translate(-50%, -50%) scale(1.25);
-}
- #debt-amount-slider input {
-	 display: none;
-}
- #debt-amount-slider input:checked + label::before {
-	 font-weight: 800;
-	 opacity: 1;
-}
- #debt-amount-slider input:checked + label::after {
-	 border-width: 4px;
-	 transform: translate(-50%, -50%) scale(0.75);
-}
- #debt-amount-slider input:checked ~ #debt-amount-pos {
-	 opacity: 1;
-}
- #debt-amount-slider input:checked:nth-child(1) ~ #debt-amount-pos {
-	 left: 10%;
-}
- #debt-amount-slider input:checked:nth-child(3) ~ #debt-amount-pos {
-	 left: 30%;
-}
- #debt-amount-slider input:checked:nth-child(5) ~ #debt-amount-pos {
-	 left: 50%;
-}
- #debt-amount-slider input:checked:nth-child(7) ~ #debt-amount-pos {
-	 left: 70%;
-}
- #debt-amount-slider input:checked:nth-child(9) ~ #debt-amount-pos {
-	 left: 90%;
-}
- #debt-amount-slider #debt-amount-pos {
-	 display: block;
-	 position: absolute;
-	 top: 50%;
-	 width: 12px;
-	 height: 12px;
-	 background: #5CA7FC;
-	 border-radius: 50%;
-	 transition: all 0.15s ease-in-out;
-	 transform: translate(-50%, -50%);
-	 border: 2px solid #5CA7FC;
-	 opacity: 0;
-	 z-index: 2;
+.nds{
+    font-size: 14px;
+    margin-top: 20px;
 }
 
- @keyframes spin {
-	 from {
-		 transform: rotate(0deg);
-		 width: 24px;
-		 opacity: 1;
-		 margin-right: 12px;
-	}
-	 to {
-		 transform: rotate(360deg);
-		 width: 24px;
-		 opacity: 1;
-		 margin-right: 12px;
-	}
+.nds span{
+    font-size: 14px;
 }
+
 
 .showBtn img{
     width: 32px;
@@ -616,15 +498,6 @@
         row-gap: 20px;
     }
 
-    #debt-amount-slider label::after{
-        width: 20px;
-        height: 20px;
-    }
-
-    #debt-amount-slider #debt-amount-pos{
-        width: 5px;
-        height: 5px;
-    }
 
     p{
         font-size: 16px;
@@ -766,7 +639,7 @@
             <div class="box total">
                 <div class="total-sum">
                     ИТОГО: <span id="totalSum">0 руб</span> <br>
-                    в том числе НДС 20%: <span id="totalNds">0 руб</span><br>
+                    <div class="nds">в том числе НДС 20%: <span id="totalNds">0 руб</span><br></div>
                     <p>Окончательная стоимость<br>может немного отличаться</p>
                 </div>
                 <button class="popup-trigger">Получить предложение</button>
